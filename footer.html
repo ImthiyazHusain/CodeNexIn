@@ -1,52 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Footer</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Footer Example</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* --- General Body and Font Setup --- */
+/* --- General Setup --- */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f0f2f5;
     margin: 0;
+    background-color: #f0f2f5;
     color: #E0E2E8;
 }
 
-/* --- Main Footer Styles --- */
+/* --- Footer Container --- */
 .site-footer {
     background-color: #0D1128;
-    padding: 80px 0;
-    position: relative;
+    padding: 60px 20px 40px;
 }
 
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
 }
 
-/* --- Top Section: 4-Column Grid --- */
+/* --- Footer Top Grid --- */
 .footer-top {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 40px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
+/* --- Footer Column Titles --- */
 .footer-column h2, .footer-column h3 {
     color: #FFFFFF;
-    font-size: 16px;
-    margin-bottom: 20px;
     font-weight: 600;
+    margin-bottom: 15px;
 }
 
+/* --- Column Links --- */
 .footer-column ul {
     list-style: none;
     padding: 0;
@@ -61,27 +57,27 @@ body {
     color: #A9B2CC;
     text-decoration: none;
     font-size: 14px;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
 }
 
 .footer-column ul li a:hover {
     color: #FFFFFF;
 }
 
-/* --- About & Contact Column --- */
+/* --- About Column --- */
 .footer-column.about .footer-logo {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .footer-column.about .footer-logo h2 {
-    margin: 0;
     font-size: 20px;
+    color: #FFFFFF;
+    margin: 0;
 }
 
-/* Logo Image Styling */
 .footer-logo img.footer-logo-img {
     width: 50px;
     height: 50px;
@@ -90,21 +86,19 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
-.footer-column.about .about-text {
+.about-text {
     font-size: 14px;
     line-height: 1.6;
     color: #A9B2CC;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
-.contact-info {
-    font-size: 14px;
-}
-
+/* --- Contact Info --- */
 .contact-info li {
     display: flex;
     align-items: center;
     gap: 10px;
+    font-size: 14px;
     color: #A9B2CC;
 }
 
@@ -116,41 +110,34 @@ body {
     flex-shrink: 0;
 }
 
-/* --- Newsletter Section --- */
-.footer-newsletter {
-    max-width: 450px;
-    margin-top: 20px;
-}
-
+/* --- Newsletter --- */
 .footer-newsletter h3 {
     color: #FFFFFF;
-    font-size: 16px;
-    margin-bottom: 10px;
     font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .footer-newsletter p {
-    color: #A9B2CC;
     font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    color: #A9B2CC;
+    margin-bottom: 15px;
 }
 
 .newsletter-form {
     display: flex;
+    max-width: 100%;
     background-color: #2E334D;
     border-radius: 8px;
     overflow: hidden;
 }
 
 .newsletter-form input {
-    flex-grow: 1;
+    flex: 1;
+    padding: 10px 15px;
     border: none;
-    background: transparent;
-    padding: 12px 16px;
-    color: #FFFFFF;
-    font-size: 14px;
     outline: none;
+    background: transparent;
+    color: #FFFFFF;
 }
 
 .newsletter-form input::placeholder {
@@ -158,222 +145,222 @@ body {
 }
 
 .newsletter-form button {
-    border: none;
     background-color: #3C4262;
-    padding: 10px 16px;
+    color: #FFFFFF;
+    border: none;
+    padding: 0 15px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #FFFFFF;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s;
 }
 
 .newsletter-form button:hover {
-    background-color: #4a5073;
+    background-color: #4A5073;
 }
 
 /* --- Divider --- */
 .footer-divider {
-    border: none;
+    border: 0;
     height: 1px;
-    background-color: rgba(169, 178, 204, 0.2);
+    background-color: rgba(169,178,204,0.2);
     margin: 40px 0;
 }
 
-/*Copyright & Social */
+/* --- Footer Bottom --- */
 .footer-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
     font-size: 14px;
     color: #A9B2CC;
+    gap: 15px;
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 15px;
 }
 
 .footer-bottom-links a {
     color: #A9B2CC;
     text-decoration: none;
-    margin: 0 12px;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
 }
 
 .footer-bottom-links a:hover {
     color: #FFFFFF;
 }
 
+/* --- Social Icons --- */
 .social-icons {
     display: flex;
-    gap: 16px;
+    gap: 15px;
 }
 
 .social-icons a {
     color: #A9B2CC;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
 }
 
 .social-icons a:hover {
     color: #FFFFFF;
 }
 
-/* --- Optional Floating Button --- */
-.scroll-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 48px;
-    height: 48px;
-    background-color: transparent;
-    border: 1px solid rgba(169, 178, 204, 0.5);
-    border-radius: 50%;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.scroll-to-top:hover {
-    background-color: #3C4262;
-    border-color: #3C4262;
-}
-
-/* --- Responsive Adjustments --- */
+/* --- Responsive --- */
 @media (max-width: 768px) {
+    .footer-top {
+        gap: 30px;
+    }
     .footer-bottom {
         flex-direction: column;
-        align-items: center;
         text-align: center;
     }
     .footer-bottom-links {
         order: -1;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 }
 
 @media (max-width: 480px) {
-    .footer-bottom-links {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        margin-bottom: 20px;
+    .footer-column h3, .footer-column h2 {
+        font-size: 16px;
     }
-    .footer-bottom-links a {
-        margin: 0;
+    .newsletter-form {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .newsletter-form button {
+        width: 100%;
+    }
+    .footer-bottom-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .social-icons {
+        justify-content: center;
     }
 }
 </style>
+</head>
 
 <body>
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-top">
-                <div class="footer-column about">
-                    <div class="footer-logo">
-                        <img src="assets/footer_logo.jpg" alt="CodeNexIn Logo" class="footer-logo-img">
-                        <h2>CodeNexIn</h2>
-                    </div>
-                    <p class="about-text">
-                        Transforming businesses through innovative technology solutions. We're your trusted partner in digital transformation and growth.
-                    </p>
-                    <ul class="contact-info">
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"> 
-                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.558Z"/> 
-                            </svg>
-                            <a href="mailto:hello@codenexin.com">hello@codenexin.com</a>
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"> 
-                                <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.28 1.465l-2.13 2.13a11.942 11.942 0 0 0 5.58 5.58l2.13-2.13a1.5 1.5 0 0 1 1.465.28l2.292 2.292c.391.391.391 1.023 0 1.414l-2.121 2.121a1.745 1.745 0 0 1-2.61.163L4.93 14.48a12.42 12.42 0 0 1-6.104-6.104L.22 5.093a1.745 1.745 0 0 1 .163-2.61l2.121-2.121a1.414 1.414 0 0 1 1.414 0l-2.121 2.121Z"/> 
-                            </svg>
-                            <span>+1 (555) 123-4567</span>
-                        </li>
-                        <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"> 
-                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/> 
-                            </svg>
-                            <span>San Francisco, CA</span>
-                        </li>
-                    </ul>
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-top">
+            <!-- About Column -->
+            <div class="footer-column about">
+                <div class="footer-logo">
+                    <img src="assets/footer_logo.jpg" alt="CodeNexIn Logo" class="footer-logo-img">
+                    <h2>CodeNexIn</h2>
                 </div>
-
-                <div class="footer-column links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Portfolio</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column links">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="#">Software Development</a></li>
-                        <li><a href="#">AI & Machine Learning</a></li>
-                        <li><a href="#">Cloud Solutions</a></li>
-                        <li><a href="#">Digital Transformation</a></li>
-                        <li><a href="#">Cybersecurity</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column links">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#">Case Studies</a></li>
-                        <li><a href="#">Research & Insights</a></li>
-                        <li><a href="#">Events & Hackathons</a></li>
-                        <li><a href="#">Partner With Us</a></li>
-                        <li><a href="#">Legal</a></li>
-                    </ul>
-                </div>
+                <p class="about-text">
+                    Transforming businesses through innovative technology solutions. We're your trusted partner in digital transformation and growth.
+                </p>
+                <ul class="contact-info">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.558Z"/>
+                        </svg>
+                        <a href="mailto:hello@codenexin.com">hello@codenexin.com</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.28 1.465l-2.13 2.13a11.942 11.942 0 0 0 5.58 5.58l2.13-2.13a1.5 1.5 0 0 1 1.465.28l2.292 2.292c.391.391.391 1.023 0 1.414l-2.121 2.121a1.745 1.745 0 0 1-2.61.163L4.93 14.48a12.42 12.42 0 0 1-6.104-6.104L.22 5.093a1.745 1.745 0 0 1 .163-2.61l2.121-2.121a1.414 1.414 0 0 1 1.414 0l-2.121 2.121Z"/>
+                        </svg>
+                        <span>+1 (555) 123-4567</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                        </svg>
+                        <span>San Francisco, CA</span>
+                    </li>
+                </ul>
             </div>
 
-            <div class="footer-newsletter">
-                <h3>Stay Updated</h3>
-                <p>Subscribe to our newsletter for the latest technology insights and updates.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email">
-                    <button type="submit">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"> 
-                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/> 
-                        </svg>
-                    </button>
-                </form>
+            <!-- Quick Links Column -->
+            <div class="footer-column links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
             </div>
-            
-            <hr class="footer-divider">
 
-            <div class="footer-bottom">
-                <p class="copyright">&copy; 2025 CodeNexIn. All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Cookie Policy</a>
-                </div>
-                <div class="social-icons">
-                    <a href="#" aria-label="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"> 
-                            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.325 0-1.845.723-2.165 1.258h.016V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/> 
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="Twitter">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"> 
-                            <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/> 
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="Facebook">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"> 
-                            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0 0 3.603 0 8.049c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326h-1.864v5.625C13.074 15.396 16 12.065 16 8.049z"/> 
-                        </svg>
-                    </a>
-                </div>
+            <!-- Services Column -->
+            <div class="footer-column links">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Software Development</a></li>
+                    <li><a href="#">AI & Machine Learning</a></li>
+                    <li><a href="#">Cloud Solutions</a></li>
+                    <li><a href="#">Digital Transformation</a></li>
+                    <li><a href="#">Cybersecurity</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources Column -->
+            <div class="footer-column links">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Research & Insights</a></li>
+                    <li><a href="#">Events & Hackathons</a></li>
+                    <li><a href="#">Partner With Us</a></li>
+                    <li><a href="#">Legal</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter">
+            <h3>Stay Updated</h3>
+            <p>Subscribe to our newsletter for the latest technology insights and updates.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email">
+                <button type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+        <hr class="footer-divider">
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 CodeNexIn. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.325 0-1.845.723-2.165 1.258h.016V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0 0 3.603 0 8.049c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326h-1.864v5.625C13.074 15.396 16 12.065 16 8.049z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
