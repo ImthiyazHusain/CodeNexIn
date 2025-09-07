@@ -4,31 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main Page</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
 </head>
 <body>
   <div id="navbar"></div>
 
-  <h1>Welcome to My Website</h1>
-  <p>This is the main content of the page.</p>
+  <main style="padding:200px;">
+    <h1>Welcome to My Website</h1>
+    <p>This is the main content area.</p>
+  </main>
 
- 
   <div id="footer"></div>
 
-  <script>
-    
-    fetch('navbar.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('navbar').innerHTML = data;
-      });
-
-   
-    fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer').innerHTML = data;
-      });
-  </script>
-
+  
 </body>
 </html>
