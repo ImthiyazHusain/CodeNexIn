@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Navbar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 30px;
+      background-color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-radius: 12px;
+      margin: 20px;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .logo {
+      width: 60px;
+      height: auto;
+      border-radius: 8px;
+      margin-right: 15px;
+      display: block;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 18px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #333;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
+      font-size: 15px;
+      white-space: nowrap;
+      display: block;
+    }
+
+    .nav-links li a.active {
+      background: linear-gradient(135deg, #00bfff, #007bff);
+      color: #fff;
+    }
+
+    @media (min-width: 901px) {
+      .nav-links li a:hover {
+        background: none;
+        color: #007bff;
+        transform: translateY(-5px);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links li a:hover {
+        background: none;
+        color: #007bff;
+        transform: translateY(-5px);
+      }
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 25px;
+      height: 20px;
+      justify-content: space-between;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 3px;
+      background-color: #333;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 900px) {
+      .navbar {
+        padding: 12px 20px;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        right: 0;
+        background-color: #fff;
+        flex-direction: column;
+        width: 220px;
+        max-width: 80vw;
+        height: calc(100vh - 70px);
+        padding-top: 20px;
+        box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+        border-radius: 0 0 0 12px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        gap: 12px;
+        overflow-y: auto;
+        z-index: 999;
+      }
+
+      .nav-links.open {
+        transform: translateX(0);
+      }
+
+      .nav-links li a {
+        font-size: 18px;
+        padding: 12px 20px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="logo-container">
+        <img src="assets/Logo.png" alt="Logo" class="logo" />
+      </div>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="active">Home</a>
+        </li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Solutions</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Research</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Partner</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Dashboards</a></li>
+      </ul>
+
+      <div class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <script>
+    const navLinks = document.querySelectorAll('.nav-links li a');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const currentActive = document.querySelector('.nav-links li a.active');
+        if (currentActive) {
+          currentActive.classList.remove('active');
+        }
+
+        this.classList.add('active');
+
+        if(window.innerWidth <= 900) {
+          navLinksContainer.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const navLinksContainer = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = navLinksContainer.classList.toggle('open');
+      hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', (e) => {
+      if(window.innerWidth <= 900) {
+        if (!navLinksContainer.contains(e.target) && !hamburger.contains(e.target)) {
+          navLinksContainer.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+
+    hamburger.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        hamburger.click();
+      }
+    });
+  </script>
+
+</body>
+</html>
