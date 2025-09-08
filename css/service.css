@@ -1,0 +1,199 @@
+/* Reset Default Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4ff;
+    color: #333;
+}
+
+/* Service Section */
+.service {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.s1 section {
+    max-width: 900px;
+    margin: 0 auto 50px;
+}
+
+#sp1 {
+    display: inline-block;
+    background-color: #6366f1;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.s1 b {
+    display: block;
+    font-size: 36px;
+    color: #1e1e2f;
+    margin-bottom: 20px;
+}
+
+.s1 p {
+    font-size: 18px;
+    color: #5c5f7a;
+    line-height: 1.6;
+}
+
+/* Cards Grid */
+.s2 .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+/* Card Style */
+.card1, .card2, .card3, .card4, .card5, .card6 {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card1:hover, .card2:hover, .card3:hover, .card4:hover, .card5:hover, .card6:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card1 svg, .card2 svg, .card3 svg, .card4 svg, .card5 svg, .card6 svg {
+    background-color: #e0e7ff;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.card1 h1, .card2 h1, .card3 h1, .card4 h1, .card5 h1, .card6 h1 {
+    font-size: 22px;
+    color: #1e1e2f;
+    margin-bottom: 15px;
+}
+
+.card1 p, .card2 p, .card3 p, .card4 p, .card5 p, .card6 p {
+    font-size: 15px;
+    color: #5c5f7a;
+    margin-bottom: 15px;
+}
+
+.card1 h2, .card2 h2, .card3 h2, .card4 h2, .card5 h2, .card6 h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card1 ul, .card2 ul, .card3 ul, .card4 ul, .card5 ul, .card6 ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.card1 ul li, .card2 ul li, .card3 ul li, .card4 ul li, .card5 ul li, .card6 ul li {
+    color: #5c5f7a;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+.technologies span {
+    display: inline-block;
+    background-color: #e0e7ff;
+    color: #4f46e5;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.card1 button, .card2 button, .card3 button, .card4 button, .card5 button, .card6 button {
+    background-color: #6366f1;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: auto;
+    transition: background-color 0.3s ease;
+}
+
+.card1 button:hover, .card2 button:hover, .card3 button:hover, .card4 button:hover, .card5 button:hover, .card6 button:hover {
+    background-color: #4f46e5;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .s1 b {
+        font-size: 28px;
+    }
+
+    .s1 p {
+        font-size: 16px;
+    }
+
+    .card1 h1, .card2 h1, .card3 h1, .card4 h1, .card5 h1, .card6 h1 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .s1 b {
+        font-size: 24px;
+    }
+
+    .s1 p {
+        font-size: 15px;
+    }
+
+    .card1 h1, .card2 h1, .card3 h1, .card4 h1, .card5 h1, .card6 h1 {
+        font-size: 18px;
+    }
+
+    .technologies {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .s1 b {
+        font-size: 20px;
+    }
+
+    .s1 p {
+        font-size: 14px;
+    }
+
+    .card1 h1, .card2 h1, .card3 h1, .card4 h1, .card5 h1, .card6 h1 {
+        font-size: 16px;
+    }
+
+    .technologies span {
+        font-size: 12px;
+    }
+}
