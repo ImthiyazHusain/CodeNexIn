@@ -295,10 +295,44 @@ section {
 }
 
 
-
 /* clients */
 .clients {
-    background: var(--gray-100);
+  text-align: center;
+  padding: 80px 20px;
+    background: linear-gradient(135deg, var(--light-color) 0%, rgba(30, 144, 255, 0.05) 100%);
+}
+
+.clients-scroll {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.clients-track div {
+  flex: 0 0 150px;   /* smaller width */
+  height: 80px;      /* smaller height */
+  margin: 0 10px;    /* spacing between boxes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  color: #555;
+  font-size: 14px;   /* smaller text */
+  white-space: nowrap;
+}
+
+.clients-track {
+  display: flex;
+  width: calc(250px * 16); /* 16 logos (8 unique + 8 duplicate) */
+  animation: scrollLeft 25s linear infinite;
+}
+
+.clients-scroll:hover .clients-track {
+  animation-play-state: paused; /* pauses animation on hover */
 }
 
 .clients-grid {
@@ -309,29 +343,40 @@ section {
 }
 
 .client-logo {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    text-align: center;
-    font-weight: 600;
-    color: var(--text-primary);
-    box-shadow: var(--shadow);
-    transition: var(--transition);
+  flex: 0 0 250px; /* fixed width per logo box */
+  color: #1A1D23;
+  margin: 0 15px;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  font-weight: 600;
+  font-size: 1.2rem;
+  white-space: nowrap;
 }
 
 .client-logo:hover {
     transform: scale(1.05);
+    
+}
+
+@keyframes scrollLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* services */
-.services {
-    background: var(--white);
+.services {background: linear-gradient(135deg, var(--light-color) 0%, rgba(30, 144, 255, 0.05) 100%);
 }
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    gap: 2rem; /* spacing between cards */
+    justify-items: center; /* center align each card */
+    margin: 2rem auto;
 }
 
 .service-card {
@@ -339,15 +384,17 @@ section {
     padding: 2rem;
     border-radius: 12px;
     box-shadow: var(--shadow);
-    transition: var(--transition);
     border: 1px solid var(--gray-200);
     position: relative;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
     border-color: var(--primary-color);
+
+     transform: translateY(-8px);   /* move up on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25); /* deeper shadow */
 }
 
 .service-icon {
@@ -380,6 +427,10 @@ section {
 }
 
 /* testimonials */
+.testimonials{
+    background: var(--white);
+}
+
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -389,14 +440,16 @@ section {
 .testimonial-card {
     background: var(--white);
     padding: 2rem;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    text-align: left;
 }
 
 .testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-10px); /* float up */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15),
+                0 0 25px rgba(100, 120, 255, 0.3); /* glowing effect */
 }
 
 .testimonial-card p {
@@ -409,6 +462,7 @@ section {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    margin-top: 1rem;
 }
 
 .client-info strong {
@@ -429,7 +483,8 @@ section {
 
 /* pricing */
 .pricing {
-    background: var(--white);
+    
+    background: var(--gray-100);
 }
 
 .pricing-grid {
@@ -448,32 +503,36 @@ section {
     box-shadow: var(--shadow);
     border: 2px solid var(--gray-200);
     position: relative;
-    transition: var(--transition);
     transform: scale(1.05);
     text-align: center;
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow: hidden;
     
 }
 
+
 .pricing-card:hover {
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-12px); /* float up */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15),
+                0 0 25px rgba(100, 120, 255, 0.3); /* blue glow */
 }
 
 
 .plan-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--primary-color);
-    color: var(--white);
-    padding: 0.5rem 1.5rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;                 /* full width of card */
+  background: #007bff;         /* blue background */
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 6px 0;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .plan-icon {
@@ -487,6 +546,11 @@ section {
     margin: 0 auto 1.5rem;
     font-size: 2rem;
     color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.pricing-card:hover .plan-icon {
+    transform: scale(1.1) translateY(-5px);
 }
 
 .pricing-card h3 {
@@ -530,7 +594,8 @@ section {
 
 /* insights */
 .insights {
-    background: var(--gray-100);
+    
+    background: var(--white);
 }
 
 .insights-grid {
@@ -548,9 +613,12 @@ section {
 }
 
 .insight-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+
+    transform: translateY(-10px); /* float up */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15),
+                0 0 25px rgba(100, 120, 255, 0.3); /* glowing effect */
 }
+
 
 .insight-image {
     position: relative;
