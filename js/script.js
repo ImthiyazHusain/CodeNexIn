@@ -1,35 +1,65 @@
-fetch("navbar.html")
-  .then((res) => res.text())
-  .then((data) => {
-    document.getElementById("navbar").innerHTML = data;
+// js/navbar.js
+function initNavbar() {
+  const navLinks = document.querySelectorAll(".nav-links li a");
+  const hamburger = document.getElementById("hamburger");
+  const navLinksContainer = document.getElementById("nav-links");
+  const logoLink = document.querySelector(".logo-container a");
 
-    const hamburger = document.querySelector(".hamburger");
-    const navLinks = document.querySelector(".nav-links");
+  function setActiveLink(clickedLink) {
+    navLinks.forEach((l) => l.classList.remove("active"));
+    clickedLink.classList.add("active");
+  }
 
-    if (hamburger && navLinks) {
-      hamburger.addEventListener("click", () => {
-        hamburger.classList.toggle("open");
-        navLinks.classList.toggle("open");
-      });
+  // Link click
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      setActiveLink(this);
+      if (window.innerWidth <= 599) {
+        navLinksContainer.classList.remove("open");
+        hamburger.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+
+  // Hamburger toggle
+  hamburger.addEventListener("click", () => {
+    const isOpen = navLinksContainer.classList.toggle("open");
+    hamburger.classList.toggle("open");
+    hamburger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+
+  // Close when clicking outside
+  document.addEventListener("click", (e) => {
+    if (window.innerWidth <= 599) {
+      if (
+        !navLinksContainer.contains(e.target) &&
+        !hamburger.contains(e.target)
+      ) {
+        navLinksContainer.classList.remove("open");
+        hamburger.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
+      }
     }
   });
 
-fetch("footer.html")
-  .then((res) => res.text())
-  .then((data) => {
-    document.getElementById("footer").innerHTML = data;
+  // Keyboard accessibility
+  hamburger.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      hamburger.click();
+    }
   });
 
-fetch("chatBot.html")
-  .then((res) => res.text())
-  .then((data) => {
-    const botDiv = document.getElementById("bot");
-    botDiv.innerHTML = data;
-
-    // Re-execute scripts inside the loaded HTML
-    botDiv.querySelectorAll("script").forEach((oldScript) => {
-      const newScript = document.createElement("script");
-      newScript.text = oldScript.text;
-      document.body.appendChild(newScript);
-    });
+  // Logo sets Home active
+  logoLink.addEventListener("click", () => {
+    setActiveLink(navLinks[0]);
   });
+
+  // Auto highlight current page
+  navLinks.forEach((link) => {
+    if (link.href === window.location.href) {
+      setActiveLink(link);
+    }
+  });
+}
