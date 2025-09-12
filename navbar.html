@@ -20,8 +20,8 @@
           <li><a href="#">About Us</a></li>
           <li><a href="./service.html">Services</a></li>
           <li><a href="#">Solutions</a></li>
-          <li><a href="#">Portfolio</a></li>
-          <li><a href="#">Events</a></li>
+          <li><a href="./portfolio.html">Portfolio</a></li>
+          <li><a href="./events.html">Events</a></li>
           <li><a href="#">Research</a></li>
           <li><a href="#">Careers</a></li>
           <li><a href="#">Partner</a></li>
@@ -32,81 +32,16 @@
         <div
           class="hamburger"
           id="hamburger"
-          aria-label="Toggle navigation"
-          aria-expanded="false"
           role="button"
           tabindex="0"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </div>
       </nav>
     </header>
-
-    <script>
-      const navLinks = document.querySelectorAll(".nav-links li a");
-      const hamburger = document.getElementById("hamburger");
-      const navLinksContainer = document.getElementById("nav-links");
-      const logoLink = document.querySelector(".logo-container a");
-
-      function setActiveLink(clickedLink) {
-        navLinks.forEach((l) => l.classList.remove("active"));
-        clickedLink.classList.add("active");
-      }
-
-      // Nav link click
-      navLinks.forEach((link) => {
-        link.addEventListener("click", function () {
-          setActiveLink(this);
-          if (window.innerWidth <= 599) {
-            navLinksContainer.classList.remove("open");
-            hamburger.classList.remove("open");
-            hamburger.setAttribute("aria-expanded", "false");
-          }
-        });
-      });
-
-      // Hamburger click toggle
-      hamburger.addEventListener("click", () => {
-        const isOpen = navLinksContainer.classList.toggle("open");
-        hamburger.classList.toggle("open");
-        hamburger.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      });
-
-      // Click outside to close mobile menu
-      document.addEventListener("click", (e) => {
-        if (window.innerWidth <= 599) {
-          if (
-            !navLinksContainer.contains(e.target) &&
-            !hamburger.contains(e.target)
-          ) {
-            navLinksContainer.classList.remove("open");
-            hamburger.classList.remove("open");
-            hamburger.setAttribute("aria-expanded", "false");
-          }
-        }
-      });
-
-      // Hamburger keyboard accessibility
-      hamburger.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          hamburger.click();
-        }
-      });
-
-      // Logo click sets Home active
-      logoLink.addEventListener("click", () => {
-        setActiveLink(navLinks[0]);
-      });
-
-      // Optional: highlight link based on URL
-      navLinks.forEach((link) => {
-        if (link.href === window.location.href) {
-          setActiveLink(link);
-        }
-      });
-    </script>
+    <script src="./js/main.js"></script>
+    <script src="./js/script.js"></script>
   </body>
 </html>
