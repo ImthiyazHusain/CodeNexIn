@@ -1,0 +1,38 @@
+.events-section {
+  background-color: #f7faff; /* light blue background */
+  text-align: center;
+  padding: 80px 20px;
+  font-family: "Inter", sans-serif; /* or your chosen font */
+}
+
+.events-section .badge {
+  display: inline-block;
+  background-color: #6c63ff; /* purple badge */
+  color: white;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.events-section h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+.events-section p {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.events-section .icon {
+  font-size: 48px; /* size of emoji/icon */
+  color: #6c63ff; /* same purple as badge */
+  margin-top: 10px;
+}
