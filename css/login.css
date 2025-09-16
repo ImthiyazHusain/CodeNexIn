@@ -1,0 +1,172 @@
+:root {
+  --primary-color: #1e90ff;
+  --primary-dark: #1c7ed6;
+  --secondary-color: #6b73ff;
+  --accent-color: #ff6b6b;
+  --dark-color: #1a1d23;
+  --light-color: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --white: #ffffff;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--gray-100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+  color: var(--text-primary);
+}
+
+.container {
+  background: var(--white);
+  padding: 1.5rem 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 400px;
+ 
+  text-align: center;
+  position: relative;
+  transition: var(--transition);
+}
+
+h2 {
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+p.description {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+label {
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  padding: 0.6rem 1rem;
+  border: 1.5px solid var(--gray-300);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  width: 100%;
+  background-color: var(--light-color);
+  color: var(--text-primary);
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  background-color: var(--white);
+  box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.2);
+}
+
+button[type="submit"] {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  box-shadow: var(--shadow);
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+  box-shadow: var(--shadow-lg);
+}
+
+button[type="submit"]:disabled {
+  background-color: var(--gray-400);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.toggle-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.toggle-text button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+  padding: 0;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.toggle-text button:hover {
+  color: var(--primary-dark);
+}
+
+.terms {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  text-align: center;
+}
+
+/* Hide the inactive form */
+.hidden {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem 1.5rem;
+    width: 90%;
+    max-height: 480px;
+  }
+}

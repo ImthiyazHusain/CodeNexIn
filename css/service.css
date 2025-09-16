@@ -1,199 +1,268 @@
-/* Reset Default Styles */
-* {
+/* General Reset and Base */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f4ff;
+    background-color: rgb(243, 249, 255);
     color: #333;
 }
 
-/* Service Section */
 .service {
-    padding: 60px 20px;
-    text-align: center;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
+/* Title Section (s1) */
 .s1 section {
-    max-width: 900px;
-    margin: 0 auto 50px;
+    text-align: center;
+    margin-bottom: 50px;
+    background-color: rgb(243, 249, 255);
 }
 
 #sp1 {
+    background-color: rgb(97, 94, 154);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 0.9rem;
     display: inline-block;
-    background-color: #6366f1;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .s1 b {
     display: block;
-    font-size: 36px;
-    color: #1e1e2f;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    margin: 10px 0 15px;
+    color: #222;
 }
 
 .s1 p {
-    font-size: 18px;
-    color: #5c5f7a;
+    font-size: 1.1rem;
     line-height: 1.6;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-/* Cards Grid */
+/* Cards Container */
 .s2 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(390px, 1fr)); /* Increased min width */
     gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: 40px;
 }
 
-/* Card Style */
-.card1, .card2, .card3, .card4, .card5, .card6 {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    padding: 25px;
+/* Individual Card Styling */
+.s2 .cards > div {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 35px 40px 45px; /* Increased padding */
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    min-height: 450px; /* Set minimum height for bigger cards */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card1:hover, .card2:hover, .card3:hover, .card4:hover, .card5:hover, .card6:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+.s2 .cards > div:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
-.card1 svg, .card2 svg, .card3 svg, .card4 svg, .card5 svg, .card6 svg {
-    background-color: #e0e7ff;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-
-.card1 h1, .card2 h1, .card3 h1, .card4 h1, .card5 h1, .card6 h1 {
-    font-size: 22px;
-    color: #1e1e2f;
+/* SVG Icon */
+.s2 svg {
     margin-bottom: 15px;
+    align-self: flex-start;
 }
 
-.card1 p, .card2 p, .card3 p, .card4 p, .card5 p, .card6 p {
-    font-size: 15px;
-    color: #5c5f7a;
-    margin-bottom: 15px;
+/* Card Title */
+.s2 h1 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    color: #222;
 }
 
-.card1 h2, .card2 h2, .card3 h2, .card4 h2, .card5 h2, .card6 h2 {
-    font-size: 16px;
-    font-weight: bold;
+/* Card Description */
+.s2 p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 18px;
+}
+
+/* Section Headers inside Cards */
+.s2 h2 {
+    font-size: 1.1rem;
+    margin-top: 15px;
     margin-bottom: 10px;
+    font-weight: 700;
+    color: #333;
 }
 
-.card1 ul, .card2 ul, .card3 ul, .card4 ul, .card5 ul, .card6 ul {
+/* List Styling */
+.s2 ul {
     list-style-type: disc;
     padding-left: 20px;
-    margin-bottom: 15px;
+    margin: 0 0 15px 0;
 }
 
-.card1 ul li, .card2 ul li, .card3 ul li, .card4 ul li, .card5 ul li, .card6 ul li {
-    color: #5c5f7a;
-    margin-bottom: 8px;
-    font-size: 14px;
+.s2 ul li {
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+    color: #444;
 }
 
+/* Technologies Tags */
 .technologies {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 15px;
-    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
 }
 
 .technologies span {
-    display: inline-block;
-    background-color: #e0e7ff;
-    color: #4f46e5;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 13px;
+    background-color: #e7f1ff;
+    color: rgb(97, 94, 154);
+    border-radius: 15px;
+    padding: 5px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
-.card1 button, .card2 button, .card3 button, .card4 button, .card5 button, .card6 button {
-    background-color: #6366f1;
+/* Button Styling */
+button {
+    align-self: flex-start;
+    background-color: rgb(97, 94, 154);
     color: white;
     border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 14px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
     cursor: pointer;
-    width: 100%;
-    margin-top: auto;
     transition: background-color 0.3s ease;
 }
 
-.card1 button:hover, .card2 button:hover, .card3 button:hover, .card4 button:hover, .card5 button:hover, .card6 button:hover {
-    background-color: #4f46e5;
+button:hover {
+    background-color: rgb(145, 170, 228);
+}
+
+/* Consultation Section (Bottom) */
+.conslt {
+    text-align: center;
+    background-color: rgb(240, 246, 255);
+    padding: 60px 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.conslt h1 {
+    font-size: 2rem;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.conslt p {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+}
+
+.conslt button {
+    background-color: rgb(97, 94, 154);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.conslt button:hover {
+    background-color: rgb(145, 170, 228);
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-    .s1 b {
-        font-size: 28px;
-    }
-
-    .s1 p {
-        font-size: 16px;
-    }
-
-    .card1 h1, .card2 h1, .card3 h1, .card4 h1, .card5 h1, .card6 h1 {
-        font-size: 20px;
-    }
-}
-
 @media (max-width: 768px) {
     .s1 b {
-        font-size: 24px;
+        font-size: 1.5rem;
     }
 
     .s1 p {
-        font-size: 15px;
+        font-size: 1rem;
     }
 
-    .card1 h1, .card2 h1, .card3 h1, .card4 h1, .card5 h1, .card6 h1 {
-        font-size: 18px;
+    .s2 h1 {
+        font-size: 1.2rem;
     }
 
-    .technologies {
-        justify-content: flex-start;
+    .s2 h2 {
+        font-size: 1rem;
+    }
+
+    .s2 p,
+    .s2 ul li {
+        font-size: 0.9rem;
+    }
+
+    .conslt h1 {
+        font-size: 1.6rem;
+    }
+
+    .conslt p {
+        font-size: 1rem;
+    }
+
+    .conslt button {
+        padding: 10px 20px;
+        font-size: 0.95rem;
     }
 }
 
 @media (max-width: 480px) {
-    .cards {
-        grid-template-columns: 1fr;
-    }
-
     .s1 b {
-        font-size: 20px;
+        font-size: 1.3rem;
     }
 
     .s1 p {
-        font-size: 14px;
+        font-size: 0.9rem;
     }
 
-    .card1 h1, .card2 h1, .card3 h1, .card4 h1, .card5 h1, .card6 h1 {
-        font-size: 16px;
+    .s2 h1 {
+        font-size: 1.1rem;
     }
 
-    .technologies span {
-        font-size: 12px;
+    .s2 h2 {
+        font-size: 0.95rem;
+    }
+
+    .s2 p,
+    .s2 ul li {
+        font-size: 0.85rem;
+    }
+
+    button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .conslt h1 {
+        font-size: 1.4rem;
+    }
+
+    .conslt p {
+        font-size: 0.9rem;
+    }
+
+    .conslt button {
+        display: block;
+        width: 80%;
+        margin: 10px auto;
     }
 }
