@@ -248,17 +248,43 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.cursor = 'pointer';
     });
 
-    // Testimonials auto-rotate
-    const testimonialCards = document.querySelectorAll('.testimonial-card');
-    let current = 0;
-    function rotateTestimonials() {
-        testimonialCards.forEach((card, i) => {
-            card.style.opacity = i === current ? '1' : '0.7';
-            card.style.transform = i === current ? 'scale(1.02)' : 'scale(1)';
-        });
-        current = (current + 1) % testimonialCards.length;
-    }
-    if (testimonialCards.length > 1) setInterval(rotateTestimonials, 5000);
+    const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.nav-dot');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                // Hide all slides
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Remove active class from all dots
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                });
+                
+                // Show current slide and activate corresponding dot
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+                
+                currentSlide = index;
+            }
+
+            // Add click event listeners to dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                });
+            });
+
+            // Auto-advance carousel every 5 seconds
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }, 5000);
+
+            // Initialize first slide
+            showSlide(0);
 
     // Header scroll effect
     const header = document.querySelector('.header');
