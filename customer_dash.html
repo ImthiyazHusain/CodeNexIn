@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for creating charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Feather Icons for UI icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        /* Use the Inter font family defined in the Google Fonts link */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* A light gray background */
+        }
+        /* Custom styles for chart tooltips */
+        .chartjs-tooltip {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        /* Custom styles for progress bar animations */
+        .progress-bar-fill {
+            transition: width 0.8s ease-in-out;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+  
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Header Section -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Customer Dashboard</h1>
+            <p class="text-gray-500 mt-1">Welcome back! Here's an overview of your projects and business metrics.</p>
+        </header>
+
+        <!-- Main Dashboard Grid -->
+        <main class="space-y-6">
+
+            <!-- Key Metrics Section -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Total Projects Card -->
+                <div class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500">Total Projects</p>
+                        <p id="total-projects" class="text-3xl font-semibold text-gray-800">127</p>
+                        <p id="total-projects-change" class="text-xs text-green-500 mt-1">+12% from last month</p>
+                    </div>
+                    <div class="bg-blue-100 text-blue-600 p-3 rounded-full">
+                        <i data-feather="briefcase" class="w-6 h-6"></i>
+                    </div>
+                </div>
+                <!-- Revenue Card -->
+                <div class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500">Revenue</p>
+                        <p id="revenue" class="text-3xl font-semibold text-gray-800">$67K</p>
+                        <p id="revenue-change" class="text-xs text-green-500 mt-1">+22% from last month</p>
+                    </div>
+                    <div class="bg-green-100 text-green-600 p-3 rounded-full">
+                        <i data-feather="dollar-sign" class="w-6 h-6"></i>
+                    </div>
+                </div>
+                <!-- Active Clients Card -->
+                <div class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500">Active Clients</p>
+                        <p id="active-clients" class="text-3xl font-semibold text-gray-800">43</p>
+                        <p id="active-clients-change" class="text-xs text-green-500 mt-1">+8% from last month</p>
+                    </div>
+                    <div class="bg-indigo-100 text-indigo-600 p-3 rounded-full">
+                        <i data-feather="users" class="w-6 h-6"></i>
+                    </div>
+                </div>
+                <!-- Satisfaction Card -->
+                <div class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500">Satisfaction</p>
+                        <p id="satisfaction" class="text-3xl font-semibold text-gray-800">98%</p>
+                        <p id="satisfaction-change" class="text-xs text-green-500 mt-1">+2% from last month</p>
+                    </div>
+                    <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full">
+                        <i data-feather="smile" class="w-6 h-6"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Project Status Overview Chart -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-700 mb-4">Project Status Overview</h2>
+                    <div class="h-80"><canvas id="projectStatusChart"></canvas></div>
+                </div>
+                <!-- Revenue Trend Chart -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-700 mb-4">Revenue Trend</h2>
+                    <div class="h-80"><canvas id="revenueTrendChart"></canvas></div>
+                </div>
+            </div>
+            
+            <!-- Recent Projects and Service Distribution Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Recent Projects List -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-semibold text-gray-700">Recent Projects</h2>
+                        <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800">View All</a>
+                    </div>
+                    <div id="recent-projects-list" class="space-y-6">
+                        <!-- Project items will be dynamically inserted here -->
+                    </div>
+                </div>
+                <!-- Service Distribution Chart -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-700 mb-4">Service Distribution</h2>
+                    <div class="h-64 mb-4 flex items-center justify-center"><canvas id="serviceDistributionChart"></canvas></div>
+                    <div id="service-distribution-legend" class="space-y-2 text-sm text-gray-600">
+                        <!-- Legend items will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer Actions Section -->
+        <footer class="mt-8 flex flex-wrap gap-4">
+             <button id="refresh-data-btn" class="flex items-center gap-2 bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-sm hover:bg-blue-700 transition-colors">
+                <i data-feather="refresh-cw" class="w-4 h-4"></i>
+                <span>Refresh Data</span>
+            </button>
+            <button class="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 font-medium py-2 px-4 rounded-lg shadow-sm hover:bg-gray-50 transition-colors">
+                <i data-feather="download" class="w-4 h-4"></i>
+                <span>Export Report</span>
+            </button>
+            <button class="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 font-medium py-2 px-4 rounded-lg shadow-sm hover:bg-gray-50 transition-colors">
+                <i data-feather="message-square" class="w-4 h-4"></i>
+                <span>Contact Support</span>
+            </button>
+            <button class="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 font-medium py-2 px-4 rounded-lg shadow-sm hover:bg-gray-50 transition-colors">
+                <i data-feather="bell" class="w-4 h-4"></i>
+                <span>Notifications</span>
+            </button>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- DATA SIMULATION ---
+        // In a real application, this data would come from a backend API.
+        function getDashboardData() {
+            const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+            return {
+                keyMetrics: {
+                    totalProjects: random(120, 150),
+                    totalProjectsChange: random(5, 20),
+                    revenue: random(60, 90),
+                    revenueChange: random(10, 25),
+                    activeClients: random(40, 50),
+                    activeClientsChange: random(2, 10),
+                    satisfaction: random(95, 99),
+                    satisfactionChange: random(1, 5),
+                },
+                projectStatus: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+                    completed: [random(10,20), random(10,20), random(10,20), random(15,25), random(15,25), random(15,25)],
+                    ongoing: [random(5,10), random(5,10), random(5,10), random(5,10), random(5,10), random(5,10)],
+                },
+                revenueTrend: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+                    data: [random(50, 60), random(55, 65), random(50, 60), random(65, 75), random(60, 70), random(70, 80)],
+                },
+                recentProjects: [
+                    { name: "E-commerce Platform Redesign", company: "TechCorp Inc.", progress: 75, deadline: "15/02/2025", status: "In Progress", statusColor: "blue" },
+                    { name: "AI Chatbot Implementation", company: "InnovateAI", progress: 90, deadline: "30/01/2025", status: "Testing", statusColor: "yellow" },
+                    { name: "Data Migration Project", company: "FinanceFlow", progress: 100, deadline: "10/01/2025", status: "Completed", statusColor: "green" },
+                    { name: "Mobile App Development", company: "StartupHub", progress: 25, deadline: "20/03/2025", status: "Planning", statusColor: "gray" },
+                ],
+                serviceDistribution: {
+                    labels: ["Software Development", "AI & ML", "Cloud Solutions", "Consulting"],
+                    data: [random(30,40), random(20,30), random(15,25), random(15,25)],
+                    colors: ['#4f46e5', '#3b82f6', '#60a5fa', '#93c5fd'],
+                }
+            };
+        }
+
+        // --- CHART & UI INSTANCES ---
+        // Store chart instances to destroy them before re-rendering
+        let charts = {};
+
+        // --- RENDERING FUNCTIONS ---
+        function renderKeyMetrics(data) {
+            document.getElementById('total-projects').textContent = data.totalProjects;
+            document.getElementById('total-projects-change').textContent = `+${data.totalProjectsChange}% from last month`;
+            document.getElementById('revenue').textContent = `$${data.revenue}K`;
+            document.getElementById('revenue-change').textContent = `+${data.revenueChange}% from last month`;
+            document.getElementById('active-clients').textContent = data.activeClients;
+            document.getElementById('active-clients-change').textContent = `+${data.activeClientsChange}% from last month`;
+            document.getElementById('satisfaction').textContent = `${data.satisfaction}%`;
+            document.getElementById('satisfaction-change').textContent = `+${data.satisfactionChange}% from last month`;
+        }
+
+        function renderProjectStatusChart(data) {
+            const ctx = document.getElementById('projectStatusChart').getContext('2d');
+            if(charts.projectStatus) charts.projectStatus.destroy();
+            charts.projectStatus = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [
+                        {
+                            label: 'Completed',
+                            data: data.completed,
+                            backgroundColor: '#4f46e5',
+                            borderRadius: 6,
+                            barPercentage: 0.6,
+                        },
+                        {
+                            label: 'Ongoing',
+                            data: data.ongoing,
+                            backgroundColor: '#a5b4fc',
+                            borderRadius: 6,
+                            barPercentage: 0.6,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: '#1f2937',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            cornerRadius: 6,
+                            padding: 10,
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, stacked: true },
+                        y: { grid: { color: '#e5e7eb' }, beginAtZero: true, stacked: true }
+                    }
+                }
+            });
+        }
+
+        function renderRevenueTrendChart(data) {
+            const ctx = document.getElementById('revenueTrendChart').getContext('2d');
+            if(charts.revenueTrend) charts.revenueTrend.destroy();
+            charts.revenueTrend = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Revenue (in $K)',
+                        data: data.data,
+                        borderColor: '#4f46e5',
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#4f46e5',
+                        pointBorderColor: '#fff',
+                        pointHoverRadius: 7,
+                        pointHoverBackgroundColor: '#4f46e5',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: { 
+                            grid: { color: '#e5e7eb' }, 
+                            beginAtZero: false,
+                            ticks: {
+                                callback: function(value) { return value + 'K'; }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderRecentProjects(data) {
+            const listElement = document.getElementById('recent-projects-list');
+            listElement.innerHTML = ''; // Clear existing list
+            
+            const statusColors = {
+                'In Progress': 'bg-blue-100 text-blue-800',
+                'Testing': 'bg-yellow-100 text-yellow-800',
+                'Completed': 'bg-green-100 text-green-800',
+                'Planning': 'bg-gray-100 text-gray-800',
+            };
+
+            data.forEach(project => {
+                const projectItem = `
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <p class="font-semibold text-gray-800">${project.name} <span class="text-sm font-normal text-gray-500">- ${project.company}</span></p>
+                            <span class="text-xs font-medium px-2 py-1 rounded-full ${statusColors[project.status]}">${project.status}</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm text-gray-500 mb-2">
+                            <span>Deadline: ${project.deadline}</span>
+                            <span>${project.progress}%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-600 h-2 rounded-full progress-bar-fill" style="width: ${project.progress}%"></div>
+                        </div>
+                    </div>
+                `;
+                listElement.innerHTML += projectItem;
+            });
+        }
+
+        function renderServiceDistributionChart(data) {
+            const ctx = document.getElementById('serviceDistributionChart').getContext('2d');
+            if(charts.serviceDistribution) charts.serviceDistribution.destroy();
+            charts.serviceDistribution = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        data: data.data,
+                        backgroundColor: data.colors,
+                        borderColor: '#ffffff',
+                        borderWidth: 4,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { display: false },
+                    }
+                }
+            });
+
+            // Render custom legend
+            const legendContainer = document.getElementById('service-distribution-legend');
+            legendContainer.innerHTML = '';
+            const total = data.data.reduce((acc, val) => acc + val, 0);
+            data.labels.forEach((label, index) => {
+                const percentage = ((data.data[index] / total) * 100).toFixed(0);
+                const legendItem = `
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full" style="background-color: ${data.colors[index]}"></span>
+                            <span>${label}</span>
+                        </div>
+                        <span class="font-medium text-gray-800">${percentage}%</span>
+                    </div>
+                `;
+                legendContainer.innerHTML += legendItem;
+            });
+        }
+
+        // --- MAIN INITIALIZATION FUNCTION ---
+        function initializeDashboard() {
+            const data = getDashboardData();
+            renderKeyMetrics(data.keyMetrics);
+            renderProjectStatusChart(data.projectStatus);
+            renderRevenueTrendChart(data.revenueTrend);
+            renderRecentProjects(data.recentProjects);
+            renderServiceDistributionChart(data.serviceDistribution);
+            feather.replace(); // To render icons
+        }
+
+        // --- EVENT LISTENERS ---
+        document.addEventListener('DOMContentLoaded', initializeDashboard);
+        document.getElementById('refresh-data-btn').addEventListener('click', initializeDashboard);
+
+    </script>
+</body>
+</html>
+

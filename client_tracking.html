@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Tracking</title>
+  <!-- Tailwind CSS for styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Feather Icons for UI icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+    }
+  </style>
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+
+  <div class="max-w-7xl mx-auto">
+    <!-- Client Tracking Header -->
+    <header class="mb-8 text-center border-b pb-4">
+      <h1 class="text-3xl font-bold text-gray-800">Client Tracking</h1>
+      <p class="text-gray-500 mt-1">Manage client relationships and monitor project progress.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="space-y-6">
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap gap-4 items-center">
+        <button class="flex items-center gap-2 bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-sm hover:bg-blue-700 transition-colors">
+          <i data-feather="plus-circle" class="w-4 h-4"></i>
+          <span>Add New Client</span>
+        </button>
+        <div class="flex-grow"></div>
+        <input type="text" id="search-clients" placeholder="Search clients..." class="w-full sm:w-64 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+      </div>
+
+      <!-- Client Table -->
+      <div class="bg-white p-6 rounded-xl shadow-sm overflow-x-auto">
+        <table class="w-full text-left">
+          <thead>
+            <tr class="border-b">
+              <th class="p-4 text-sm font-semibold text-gray-600">Client Name</th>
+              <th class="p-4 text-sm font-semibold text-gray-600">Company</th>
+              <th class="p-4 text-sm font-semibold text-gray-600">Project Status</th>
+              <th class="p-4 text-sm font-semibold text-gray-600">Last Contact</th>
+              <th class="p-4 text-sm font-semibold text-gray-600 text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="client-table-body">
+            <!-- Client rows will be dynamically inserted here -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // --- CLIENT TRACKING SCRIPT ---
+    function getClientTrackingData() {
+      return [
+        { id: 1, name: "John Doe", avatar: "https://placehold.co/40x40/E2E8F0/4A5568?text=JD", company: "Innovate Inc.", status: "Active", statusColor: "green", lastContact: "2025-09-08" },
+        { id: 2, name: "Jane Smith", avatar: "https://placehold.co/40x40/E2E8F0/4A5568?text=JS", company: "Future Solutions", status: "On Hold", statusColor: "yellow", lastContact: "2025-08-21" },
+        { id: 3, name: "Sam Wilson", avatar: "https://placehold.co/40x40/E2E8F0/4A5568?text=SW", company: "Data Dynamics", status: "Proposal Sent", statusColor: "blue", lastContact: "2025-09-05" },
+        { id: 4, name: "Emily White", avatar: "https://placehold.co/40x40/E2E8F0/4A5568?text=EW", company: "Creative Minds", status: "Inactive", statusColor: "gray", lastContact: "2025-06-15" },
+        { id: 5, name: "Michael Brown", avatar: "https://placehold.co/40x40/E2E8F0/4A5568?text=MB", company: "Tech Giants", status: "Active", statusColor: "green", lastContact: "2025-09-09" },
+      ];
+    }
+
+    function renderClientTable(clients) {
+      const tableBody = document.getElementById('client-table-body');
+      if (!tableBody) return;
+      tableBody.innerHTML = '';
+
+      const statusStyles = {
+        'Active': 'bg-green-100 text-green-800',
+        'On Hold': 'bg-yellow-100 text-yellow-800',
+        'Proposal Sent': 'bg-blue-100 text-blue-800',
+        'Inactive': 'bg-gray-100 text-gray-800',
+      };
+
+      clients.forEach(client => {
+        const row = `
+          <tr class="border-b hover:bg-gray-50">
+            <td class="p-4">
+              <div class="flex items-center gap-3">
+                <img src="${client.avatar}" alt="${client.name}" class="w-10 h-10 rounded-full">
+                <span class="font-medium text-gray-800">${client.name}</span>
+              </div>
+            </td>
+            <td class="p-4 text-gray-600">${client.company}</td>
+            <td class="p-4">
+              <span class="text-xs font-medium px-2.5 py-1 rounded-full ${statusStyles[client.status] || 'bg-gray-100 text-gray-800'}">
+                ${client.status}
+              </span>
+            </td>
+            <td class="p-4 text-gray-600">${client.lastContact}</td>
+            <td class="p-4 text-center">
+              <button class="text-blue-600 hover:text-blue-800 p-2"><i data-feather="eye" class="w-4 h-4"></i></button>
+              <button class="text-gray-500 hover:text-gray-700 p-2"><i data-feather="edit-2" class="w-4 h-4"></i></button>
+            </td>
+          </tr>
+        `;
+        tableBody.innerHTML += row;
+      });
+      feather.replace(); // Re-render icons after adding them to the DOM
+    }
+
+    // --- INITIALIZE PAGE ---
+    document.addEventListener('DOMContentLoaded', () => {
+      const clientData = getClientTrackingData();
+      renderClientTable(clientData);
+
+      // Search functionality
+      const searchInput = document.getElementById('search-clients');
+      searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const filteredClients = clientData.filter(client => 
+          client.name.toLowerCase().includes(searchTerm) ||
+          client.company.toLowerCase().includes(searchTerm)
+        );
+        renderClientTable(filteredClients);
+      });
+    });
+  </script>
+</body>
+</html>
