@@ -2,520 +2,143 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Navbar Example</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Navbar with Dropdown Icons</title>
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  * {margin:0;padding:0;box-sizing:border-box;}
+  body {font-family:Arial, sans-serif;background:#f9f9f9;}
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  overflow-x: hidden; /* Prevent horizontal scroll on body */
-}
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 30px;
-  background-color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  border-radius: 12px;
-  margin: 20px;
-  position: relative;
-  z-index: 1000;
-
-  flex-wrap: nowrap; /* Prevent wrapping */
-  max-width: 100%;
-  overflow-x: auto; /* Allow horizontal scroll if needed */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 0; /* Allow shrinking */
-  flex-shrink: 0; /* Prevent logo from shrinking too much */
-}
-
-.logo-container a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.logo {
-  width: 60px;
-  height: auto;
-  border-radius: 8px;
-  margin-right: 15px;
-  display: block;
-  min-width: 0;
-  flex-shrink: 0;
-}
-
-.nav-container {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  min-width: 0;
-  flex-wrap: nowrap; /* Prevent wrapping */
-  flex-shrink: 1; /* Allow shrinking */
-  overflow: hidden; /* Hide overflow inside nav container */
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 18px;
-  min-width: 0;
-  flex-shrink: 1; /* Allow shrinking */
-  overflow: hidden;
-}
-
-.nav-links li {
-  flex-shrink: 1; /* Allow shrinking */
-  min-width: 0;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  color: #333;
-  padding: 8px 14px;
-  border-radius: 8px;
-  transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
-  font-size: 15px;
-  white-space: nowrap;
-  display: block;
-  flex-shrink: 1;
-  min-width: 0;
-}
-
-.nav-links li a.active {
-  background: linear-gradient(135deg, #00bfff, #007bff);
-  color: #fff;
-}
-
-.nav-links li a.active:hover {
-  background: linear-gradient(135deg, #00bfff, #007bff);
-  color: #fff;
-  transform: none;
-}
-
-/* Dropdown Styles */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  display: none; /* Hidden by default */
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.dropdown-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  background-color: #fff;
-}
-
-.dropdown-menu li a {
-  white-space: nowrap;
-}
-
-/* Desktop: Show on Hover */
-@media (min-width: 1200px) {
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    padding-top: 10px; /* Creates space inside, not outside */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    min-width: 180px;
-    z-index: 1001;
-    border: none;
-    background-clip: padding-box;
-  }
-
-  .dropdown-menu ul {
-    background-color: #fff;
-    padding: 10px 0;
-    border-radius: 8px;
-  }
-
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }
-
-  .dropdown-menu li a {
-    padding: 10px 20px;
-    color: #333;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-  .dropdown-menu li a:hover {
-    background-color: #f0f8ff;
-    color: #007bff;
-    transform: none; /* Override main link hover effect */
-  }
-}
-
-/* Mobile/Tablet: Fullscreen Submenu */
-@media (max-width: 1199px) {
-  .dropdown-menu {
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    margin-top: 8px;
-  }
-
-  .dropdown-menu li a {
-    padding-left: 30px; /* Indent sub-items */
-  }
-}
-
-/* Desktop hover effect */
-@media (min-width: 1200px) {
-  .nav-links li a:not(.active):hover {
-    color: #007bff;
-    transform: translateY(-5px);
-  }
-}
-
-/* Hamburger */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  width: 25px;
-  height: 20px;
-  justify-content: space-between;
-  flex-shrink: 0;
-}
-
-.hamburger span {
-  display: block;
-  height: 3px;
-  background-color: #333;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-/* Show hamburger from 0 up to 1300px (covers ~110% zoom) */
-@media (max-width: 1300px) {
-  .hamburger {
-    display: flex;
-  }
-
-  .nav-container {
-    gap: 20px;
-  }
-
-  .nav-links {
-    gap: 12px;
-  }
-
-  .nav-links li a {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
-
-  .nav-links li.more-links {
-    display: none;
-  }
-
-  /* Fullscreen menu for open state */
-  .nav-links.open {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background-color: #fff;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    padding-top: 80px;
-    box-shadow: none;
-    border-radius: 0;
-    transform: translateX(0);
-    transition: none;
-    gap: 20px;
-    overflow-y: auto;
-    z-index: 9999;
-  }
-
-  .nav-links.open li {
-    display: block;
-  }
-
-  .nav-links.open li.more-links {
-    display: block;
-  }
-
-  /* Dropdown menu inside fullscreen */
-  .dropdown-menu {
-    position: static;
-    padding: 0;
-    box-shadow: none;
-    background-color: transparent;
-    margin-top: 0;
-  }
-
-  .dropdown-menu ul {
-    background-color: transparent;
-    padding: 0;
-    border-radius: 0;
-  }
-
-  .dropdown-menu li a {
-    padding-left: 40px;
-    color: #333;
-  }
-}
-
-/* For very small screens (mobile) */
-@media (max-width: 599px) {
-  .nav-container {
-    /* On mobile, the container just holds the hamburger */
-  }
   .navbar {
-    padding: 12px 20px;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 30px;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    border-radius:12px;margin:20px;position:relative;z-index:1000;
+  }
+  .logo {width:60px;border-radius:8px;}
+  .nav-links {display:flex;list-style:none;gap:20px;align-items:center;}
+  .nav-links li {position:relative;list-style:none;}
+  .nav-links a {
+    text-decoration:none;color:#333;padding:8px 14px;border-radius:8px;
+    font-size:15px;transition:.3s;display:flex;align-items:center;gap:8px;
+  }
+  .nav-links a:hover,.nav-links a:focus {
+    background:linear-gradient(135deg,#00bfff,#007bff);color:#fff;transform:translateY(-3px);
   }
 
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background-color: #fff;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    padding-top: 80px;
-    box-shadow: none;
-    border-radius: 0;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    gap: 20px;
-    overflow-y: auto;
-    z-index: 9999;
-  }
-
-  .nav-links.open {
-    display: flex;
-    transform: translateX(0);
-  }
-
-  .nav-links li a {
-    font-size: 18px;
-    padding: 12px 20px;
-  }
-
-  .nav-links li a:not(.active):hover {
-    background-color: #f0f8ff;
-    color: #007bff;
-    transform: translateX(3px);
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  /* Dropdown menu inside fullscreen */
+  /* Dropdown hidden by default */
   .dropdown-menu {
-    position: static;
-    padding: 0;
-    box-shadow: none;
-    background-color: transparent;
-    margin-top: 0;
+    display:none;
+    position:absolute;top:100%;left:0;background:#fff;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);border-radius:8px;
+    min-width:260px;padding:10px;z-index:1001;
+    grid-template-columns:repeat(2,1fr);gap:10px 20px;
+    list-style:none;
+  }
+  .dropdown-menu li {list-style:none;}
+  .dropdown-menu a {padding:8px;color:#333;border-radius:6px;}
+  .dropdown-menu a:hover {background:#f0f8ff;color:#007bff;}
+
+  /* Hover on desktop */
+  @media (hover:hover) and (pointer:fine) {
+    .dropdown:hover > .dropdown-menu {display:grid;}
   }
 
-  .dropdown-menu ul {
-    background-color: transparent;
-    padding: 0;
-    border-radius: 0;
+  /* Auth buttons */
+  .auth-buttons {display:flex;gap:15px;}
+  .auth-buttons a {padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:600;}
+  .auth-buttons .login {border:2px solid #007bff;color:#007bff;}
+  .auth-buttons .login:hover {background:#007bff;color:#fff;}
+  .auth-buttons .signup {background:#007bff;color:#fff;border:2px solid #007bff;}
+  .auth-buttons .signup:hover {background:#0056b3;}
+
+  /* Hamburger */
+  .hamburger {display:none;flex-direction:column;width:25px;height:20px;justify-content:space-between;cursor:pointer;}
+  .hamburger span {height:3px;background:#333;border-radius:2px;transition:.3s;}
+  .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+  /* Responsive */
+  @media (max-width:900px){
+    .nav-links {
+      position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;
+      flex-direction:column;padding-top:80px;gap:20px;
+      transform:translateX(100%);transition:.3s;z-index:9999;
+    }
+    .nav-links.open {transform:translateX(0);}
+    .dropdown-menu {position:static;box-shadow:none;grid-template-columns:1fr;display:none;}
+    .dropdown.open > .dropdown-menu {display:block;}
+    .auth-buttons {flex-direction:column;margin-top:20px;}
+    .hamburger {display:flex;}
   }
-
-  .dropdown-menu li a {
-    padding-left: 40px;
-    color: #333;
-  }
-}
-
-/* Hamburger animation */
-.hamburger.open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.open span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.open span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
 </style>
 </head>
 <body>
 
 <header>
   <nav class="navbar">
-    <div class="logo-container">
-      <a href="index.html">
-        <img src="assets/Logo.png" alt="Logo" class="logo" />
-      </a>
+    <a href="index.html"><img src="assets/Logo.png" alt="Logo" class="logo"/></a>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+      <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+      <li class="dropdown" id="more-dropdown">
+        <a href="#" id="more-button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars"></i> More ▾</a>
+        <ul class="dropdown-menu" aria-label="More submenu">
+          <li><a href="#"><i class="fas fa-cogs"></i> Services</a></li>
+          <li><a href="#"><i class="fas fa-lightbulb"></i> Solutions</a></li>
+          <li><a href="#"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+          <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+          <li><a href="#"><i class="fas fa-calendar-alt"></i> Events</a></li>
+          <li><a href="#"><i class="fas fa-flask"></i> Research</a></li>
+          <li><a href="#"><i class="fas fa-user-tie"></i> Careers</a></li>
+          <li><a href="#"><i class="fas fa-handshake"></i> Partner</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="auth-buttons">
+      <a href="#" class="login">Login</a>
+      <a href="#" class="signup">Sign Up</a>
     </div>
 
-    <div class="nav-container">
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Solutions</a></li>
-        <li><a href="#">Portfolio</a></li>
-        <li><a href="#">Blog</a></li>
-        <li class="more-links"><a href="#">Events</a></li>
-        <li class="more-links"><a href="#">Research</a></li>
-        <li class="more-links"><a href="#">Careers</a></li>
-        <li class="more-links"><a href="#">Partner</a></li>
-        <li class="more-links"><a href="#">Contact</a></li>
-
-        <!-- Login button -->
-        <li id="login-button"><a href="#" aria-haspopup="true" aria-expanded="false">Login</a></li>
-
-        <!-- Dashboard dropdown, hidden by default -->
-        <li class="dropdown more-links" id="dashboard-dropdown" style="display:none;">
-          <a href="#" aria-haspopup="true" aria-expanded="false">Dashboards</a>
-          <ul class="dropdown-menu" aria-label="Dashboard submenu">
-            <li>
-              <a href="customer_dash.html" class="">
-                <span class="icon">📊</span> Customer Dashboard
-              </a>
-            </li>
-            <li>
-              <a href="client_tracking.html" class="dashboard-link active">
-                <span class="icon">👥</span> Client Tracking
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-
-      <div class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" role="button" tabindex="0">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </nav>
 </header>
 
 <script>
-const navLinks = document.querySelectorAll('.nav-links li a');
-const hamburger = document.getElementById('hamburger');
-const navLinksContainer = document.getElementById('nav-links');
-const logoLink = document.querySelector('.logo-container a');
-const loginButtonLi = document.getElementById('login-button');
-const dashboardDropdown = document.getElementById('dashboard-dropdown');
+const hamburger=document.getElementById('hamburger');
+const navLinks=document.getElementById('nav-links');
+const moreDropdown=document.getElementById('more-dropdown');
+const moreButton=document.getElementById('more-button');
 
-// Simulate login state
-let isLoggedIn = false;
+// Toggle mobile menu
+hamburger.addEventListener('click',()=>{
+  navLinks.classList.toggle('open');
+  hamburger.classList.toggle('open');
+});
 
-// Function to update navbar based on login state
-function updateNavbar() {
-  if (isLoggedIn) {
-    loginButtonLi.style.display = 'none';
-    dashboardDropdown.style.display = 'block';
-  } else {
-    loginButtonLi.style.display = 'block';
-    dashboardDropdown.style.display = 'none';
+// Mobile dropdown toggle
+moreButton.addEventListener('click',(e)=>{
+  if(window.innerWidth<=900){
+    e.preventDefault();
+    moreDropdown.classList.toggle('open');
+    moreButton.setAttribute('aria-expanded',moreDropdown.classList.contains('open'));
   }
-}
+});
 
-// Initial update
-updateNavbar();
-
-function setActiveLink(clickedLink) {
-  navLinks.forEach(l => l.classList.remove('active'));
-  clickedLink.classList.add('active');
-}
-
-// Nav link click
-navLinks.forEach(link => {
-  link.addEventListener('click', function(e) {
-    // Prevent default for login button to simulate login
-    if (this.parentElement.id === 'login-button') {
-      e.preventDefault();
-      // Simulate login toggle
-      isLoggedIn = true;
-      updateNavbar();
-      // Close menu on mobile/tablet
-      if(window.innerWidth <= 1300) {
-        navLinksContainer.classList.remove('open');
-        hamburger.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      }
-      return;
-    }
-
-    setActiveLink(this);
-    if(window.innerWidth <= 1300) { // Apply to mobile and tablet
-      navLinksContainer.classList.remove('open');
+// Close menu when clicking a dropdown link (mobile)
+document.querySelectorAll('.dropdown-menu a').forEach(link=>{
+  link.addEventListener('click',()=>{
+    if(window.innerWidth<=900){
+      navLinks.classList.remove('open');
       hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
     }
   });
 });
-
-// Hamburger click toggle
-hamburger.addEventListener('click', () => {
-  const isOpen = navLinksContainer.classList.toggle('open');
-  hamburger.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-});
-
-// Click outside to close mobile menu
-document.addEventListener('click', (e) => {
-  if(window.innerWidth <= 1300) { // Apply to mobile and tablet
-    if (!navLinksContainer.contains(e.target) && !hamburger.contains(e.target)) {
-      navLinksContainer.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
-  }
-});
-
-// Hamburger keyboard accessibility
-hamburger.addEventListener('keydown', (e) => {
-  if(e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    hamburger.click();
-  }
-});
-
-// Logo click sets Home active
-logoLink.addEventListener('click', () => {
-  setActiveLink(navLinks[0]);
-});
-
-// Optional: highlight link based on URL
-navLinks.forEach(link => {
-  if (link.href === window.location.href) {
-    setActiveLink(link);
-  }
-});
 </script>
-
 </body>
 </html>
