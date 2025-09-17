@@ -15,7 +15,7 @@ h3 {
   background-color: rgb(72, 152, 223);
   border-radius: 50% 50% 50% 0%;
   position: fixed;
-  bottom: 100px;
+  bottom: 50px;
   right: 20px;
   cursor: pointer;
   box-shadow: 0px 0px 10px gray;
@@ -39,7 +39,7 @@ h3 {
   top: 10%;
   background-color: rgb(255, 255, 255);
   transition: all 0.15s;
-  height: 450px;
+  height: 73.4%;
   .input-bar {
     border-radius: 0px 0px 10px 10px;
     display: flex;

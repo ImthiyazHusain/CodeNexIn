@@ -38,7 +38,7 @@ body {
   color: var(--text-primary);
   background-color: var(--white);
   overflow-x: hidden;
-  perspective: 1000px;
+  /* perspective: 1000px; */
 }
 
 .container {
