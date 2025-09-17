@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+    <style>
+      :root {
+        --primary-color: #1e90ff;
+        --primary-dark: #1c7ed6;
+        --text-secondary: #64748b;
+        --gray-300: #cbd5e1;
+        --gray-400: #94a3b8;
+        --gray-500: #64748b;
+        --white: #ffffff;
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --border-radius: 8px;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: #f1f5f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 1rem;
+        color: #1e293b;
+      }
+
+      .container {
+        background: var(--white);
+        padding: 1.5rem 2rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-lg);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      h2 {
+        margin-bottom: 0.25rem;
+        color: var(--primary-color);
+      }
+
+      p.description {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: left;
+      }
+
+      label {
+        font-weight: 600;
+        color: #334155;
+        margin-bottom: 0.25rem;
+        display: block;
+      }
+
+      input[type="email"],
+      input[type="password"] {
+        padding: 0.6rem 1rem;
+        border: 1.5px solid var(--gray-300);
+        border-radius: var(--border-radius);
+        font-size: 1rem;
+        width: 100%;
+        background-color: #f8fafc;
+        color: #1e293b;
+      }
+
+      input:focus {
+        border-color: var(--primary-color);
+        outline: none;
+        background-color: var(--white);
+        box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.2);
+      }
+
+      button[type="submit"] {
+        background-color: var(--primary-color);
+        color: var(--white);
+        border: none;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        width: 100%;
+      }
+
+      button[type="submit"]:hover:not(:disabled) {
+        background-color: var(--primary-dark);
+      }
+
+      button[type="submit"]:disabled {
+        background-color: var(--gray-400);
+        cursor: not-allowed;
+      }
+
+      .toggle-text {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+
+      .toggle-text button {
+        background: none;
+        border: none;
+        color: var(--primary-color);
+        cursor: pointer;
+        font-weight: 600;
+        text-decoration: underline;
+        padding: 0;
+        font-size: 0.9rem;
+      }
+
+      .toggle-text button:hover {
+        color: var(--primary-dark);
+      }
+
+      .terms {
+        margin-top: 1.5rem;
+        font-size: 0.75rem;
+        color: var(--gray-500);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form id="loginForm" novalidate>
+        <h2>Welcome Back</h2>
+        <p class="description">Enter your credentials to access your account</p>
+
+        <div>
+          <label for="loginEmail">Email</label>
+          <input
+            type="email"
+            id="loginEmail"
+            name="email"
+            placeholder="name@example.com"
+            required
+            autocomplete="username"
+          />
+        </div>
+
+        <div>
+          <label for="loginPassword">Password</label>
+          <input
+            type="password"
+            id="loginPassword"
+            name="password"
+            placeholder="Enter your password"
+            required
+            autocomplete="current-password"
+            minlength="6"
+          />
+        </div>
+
+        <button type="submit" id="loginSubmitBtn">Login</button>
+      </form>
+
+      <p class="toggle-text">
+        Don’t have an account?
+        <button type="button" id="showSignUpBtn">Sign up</button>
+      </p>
+      <p class="terms">By continuing, you agree to our Terms of Service</p>
+    </div>
+
+    <script>
+      const loginForm = document.getElementById("loginForm");
+      const loginSubmitBtn = document.getElementById("loginSubmitBtn");
+
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (!loginForm.checkValidity()) {
+          loginForm.reportValidity();
+          return;
+        }
+
+        loginSubmitBtn.disabled = true;
+        loginSubmitBtn.textContent = "Signing in...";
+
+        setTimeout(() => {
+          alert("✅ Login successful! (This is a simulation)");
+          loginSubmitBtn.disabled = false;
+          loginSubmitBtn.textContent = "Login";
+          loginForm.reset();
+        }, 1500);
+      });
+
+      document.getElementById("showSignUpBtn").addEventListener("click", () => {
+        window.location.href = "registration.html";
+      });
+    </script>
+  </body>
+</html>
