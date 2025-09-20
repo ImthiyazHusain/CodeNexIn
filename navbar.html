@@ -1,237 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Professional Navbar</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
 
 <style>
-/* Reset & body */
-* {margin:0;padding:0;box-sizing:border-box;}
-body {font-family:Arial, sans-serif;background:#f9f9f9;}
+  /* Reset & body */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+  }
 
-/* Navbar */
-.navbar {
-  display:flex;align-items:center;justify-content:space-between;
-  padding:12px 30px;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.05);
-  border-radius:12px;margin:20px;position:relative;z-index:1001;
-}
-.logo {width:60px;border-radius:8px;}
-.nav-links {display:flex;list-style:none;gap:20px;align-items:center;}
-.nav-links li {position:relative;}
-.nav-links a {
-  text-decoration:none;color:#333;padding:10px 16px;border-radius:8px;
-  font-size:15px;transition:.3s;display:flex;align-items:center;gap:10px;
-}
-.nav-links a:hover,
-.nav-links a:focus,
-.nav-links a.active {
-  background:linear-gradient(135deg,#00bfff,#007bff);
-  color:#fff;
-}
-
-/* Dropdown */
-.dropdown-menu {
-  display:none;
-  position:absolute;
-  top:100%;
-  left:0;
-  background:#fff;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  border-radius:8px;
-  min-width:240px;
-  padding:10px;
-  z-index:1002;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px 15px;
-  list-style:none; 
-}
-.dropdown-menu a {padding:8px;color:#333;border-radius:6px;font-size:14px;}
-.dropdown-menu a:hover {background:#f0f8ff;color:#007bff;}
-@media (hover:hover) and (pointer:fine) {
-  .dropdown:hover > .dropdown-menu {display:grid;}
-}
-
-/* Auth buttons */
-.auth-buttons {display:flex;gap:15px;}
-.auth-buttons a {padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:600;}
-.auth-buttons .login {border:2px solid #007bff;color:#007bff;}
-.auth-buttons .login:hover {background:#007bff;color:#fff;}
-.auth-buttons .signup {background:#007bff;color:#fff;border:2px solid #007bff;}
-.auth-buttons .signup:hover {background:#0056b3;}
-
-/* Hamburger */
-.hamburger {display:none;flex-direction:column;width:25px;height:20px;justify-content:space-between;cursor:pointer;z-index:1003;}
-.hamburger span {height:3px;background:#333;border-radius:2px;transition:.3s;}
-.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
-.hamburger.open span:nth-child(2){opacity:0;}
-.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
-
-/* Overlay for mobile */
-.overlay {
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);
-  display:none;z-index:1000;
-}
-.overlay.show {display:block;}
-
-/* Mobile View */
-@media (max-width:900px){
+  /* Navbar */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 30px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    margin: 20px;
+    position: relative;
+    z-index: 1001;
+  }
+  .logo {
+    width: 60px;
+    border-radius: 8px;
+  }
   .nav-links {
-    position:fixed;top:0;right:0;height:100%;width:300px;
-    background:#fff;flex-direction:column;padding:100px 20px 20px;
-    gap:20px;transform:translateX(100%);transition:transform .35s ease-in-out;
-    box-shadow:-4px 0 12px rgba(0,0,0,0.15);z-index:1002;
-    overflow-y:auto;
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    align-items: center;
   }
-  .nav-links.open {transform:translateX(0);}
-  .nav-links li {width:100%;}
+  .nav-links li {
+    position: relative;
+  }
   .nav-links a {
-    width:100%;padding:14px 18px;font-size:17px;
-    border-radius:10px;justify-content:flex-start;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
   }
 
+  /* Active link: background + white text */
+  .nav-links a.active {
+    background: linear-gradient(135deg, #00bfff, #007bff);
+    color: #fff;
+  }
+
+  /* Hover and focus on non-active links: only text color change, no background */
+  .nav-links a:not(.active):hover,
+  .nav-links a:not(.active):focus {
+    background: none;
+    color: #007bff;
+  }
+
+  /* Dropdown */
   .dropdown-menu {
-    position:static;box-shadow:none;grid-template-columns:1fr;
-    display:none;margin-top:5px;padding-left:15px;
-    animation:slideDown 0.3s ease forwards;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    min-width: 240px;
+    padding: 10px;
+    z-index: 1002;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 15px;
+    list-style: none;
   }
-  .dropdown.open > .dropdown-menu {display:block;}
-  @keyframes slideDown {from{opacity:0;transform:translateY(-5px);}to{opacity:1;transform:translateY(0);}}
+  .dropdown-menu a {
+    padding: 8px;
+    color: #333;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .dropdown-menu a:hover {
+    background: #f0f8ff;
+    color: #007bff;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .dropdown:hover > .dropdown-menu {
+      display: grid;
+    }
+  }
 
+  /* Auth buttons */
   .auth-buttons {
-    flex-direction:column;
-    gap:12px;
-    padding-top:10px;
+    display: flex;
+    gap: 15px;
   }
   .auth-buttons a {
-    text-align:center;padding:14px;font-size:16px;
-    border-radius:12px;font-weight:600;transition:0.3s;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
   }
   .auth-buttons .login {
-    border:2px solid #007bff;color:#007bff;background:#fff;
+    border: 2px solid #007bff;
+    color: #007bff;
   }
-  .auth-buttons .login:hover {background:#007bff;color:#fff;}
+  .auth-buttons .login:hover {
+    background: #007bff;
+    color: #fff;
+  }
   .auth-buttons .signup {
-    background:#007bff;color:#fff;border:2px solid #007bff;
-    box-shadow:0 4px 8px rgba(0,123,255,0.3);
+    background: #007bff;
+    color: #fff;
+    border: 2px solid #007bff;
   }
-  .auth-buttons .signup:hover {background:#0056b3;}
-  .hamburger {display:flex;}
-}
+  .auth-buttons .signup:hover {
+    background: #0056b3;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    width: 25px;
+    height: 20px;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1003;
+  }
+  .hamburger span {
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Overlay for mobile */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    display: none;
+    z-index: 1000;
+  }
+  .overlay.show {
+    display: block;
+  }
+
+  /* Mobile View */
+  @media (max-width: 900px) {
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 300px;
+      background: #fff;
+      flex-direction: column;
+      padding: 100px 20px 20px;
+      gap: 20px;
+      transform: translateX(100%);
+      transition: transform 0.35s ease-in-out;
+      box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+      z-index: 1002;
+      overflow-y: auto;
+    }
+    .nav-links.open {
+      transform: translateX(0);
+    }
+    .nav-links li {
+      width: 100%;
+    }
+    .nav-links a {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 17px;
+      border-radius: 10px;
+      justify-content: flex-start;
+    }
+
+    .dropdown-menu {
+      position: static;
+      box-shadow: none;
+      grid-template-columns: 1fr;
+      display: none;
+      margin-top: 5px;
+      padding-left: 15px;
+      animation: slideDown 0.3s ease forwards;
+    }
+    .dropdown.open > .dropdown-menu {
+      display: block;
+    }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .auth-buttons {
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 10px;
+    }
+    .auth-buttons a {
+      text-align: center;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .auth-buttons .login {
+      border: 2px solid #007bff;
+      color: #007bff;
+      background: #fff;
+    }
+    .auth-buttons .login:hover {
+      background: #007bff;
+      color: #fff;
+    }
+    .auth-buttons .signup {
+      background: #007bff;
+      color: #fff;
+      border: 2px solid #007bff;
+      box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+    }
+    .auth-buttons .signup:hover {
+      background: #0056b3;
+    }
+    .hamburger {
+      display: flex;
+    }
+  }
 </style>
 </head>
 <body>
+  <header>
+    <nav class="navbar">
+      <a href="index.html"><img src="assets/Logo.png" alt="Logo" class="logo" /></a>
 
-<header>
-  <nav class="navbar">
-    <a href="index.html"><img src="assets/Logo.png" alt="Logo" class="logo"/></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
 
-    <ul class="nav-links" id="nav-links">
-      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
-      <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+        <li class="dropdown" id="more-dropdown">
+          <a href="#" id="more-button"><i class="fas fa-bars"></i> More ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li>
+            <li><a href="solutions.html"><i class="fas fa-lightbulb"></i> Solutions</a></li>
+            <li><a href="portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+            <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+            <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+            <li><a href="research.html"><i class="fas fa-flask"></i> Research</a></li>
+            <li><a href="careers.html"><i class="fas fa-user-tie"></i> Careers</a></li>
+            <li><a href="partner.html"><i class="fas fa-handshake"></i> Partner</a></li>
+          </ul>
+        </li>
 
-      <li class="dropdown" id="more-dropdown">
-        <a href="#" id="more-button"><i class="fas fa-bars"></i> More ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li>
-          <li><a href="solutions.html"><i class="fas fa-lightbulb"></i> Solutions</a></li>
-          <li><a href="portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a></li>
-          <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
-          <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
-          <li><a href="research.html"><i class="fas fa-flask"></i> Research</a></li>
-          <li><a href="careers.html"><i class="fas fa-user-tie"></i> Careers</a></li>
-          <li><a href="partner.html"><i class="fas fa-handshake"></i> Partner</a></li>
-        </ul>
-      </li>
+        <div class="auth-buttons">
+          <a href="login.html" class="login">Login</a>
+          <a href="signup.html" class="signup">Sign Up</a>
+        </div>
+      </ul>
 
-      <div class="auth-buttons">
-        <a href="login.html" class="login">Login</a>
-        <a href="signup.html" class="signup">Sign Up</a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
       </div>
-    </ul>
+    </nav>
+  </header>
 
-    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-  </nav>
-</header>
+  <div class="overlay" id="overlay"></div>
 
-<div class="overlay" id="overlay"></div>
+  <script>
+    (function () {
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("nav-links");
+      const overlay = document.getElementById("overlay");
+      const moreDropdown = document.getElementById("more-dropdown");
+      const moreButton = document.getElementById("more-button");
+      const navItems = document.querySelectorAll(".nav-links a");
 
-<script>
-(function(){
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('nav-links');
-  const overlay = document.getElementById('overlay');
-  const moreDropdown = document.getElementById('more-dropdown');
-  const moreButton = document.getElementById('more-button');
-  const navItems = document.querySelectorAll('.nav-links a');
+      // Toggle mobile menu
+      hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("open");
+        hamburger.classList.toggle("open");
+        overlay.classList.toggle("show");
+      });
 
-  // Toggle mobile menu
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    hamburger.classList.toggle('open');
-    overlay.classList.toggle('show');
-  });
+      // Close menu on overlay click
+      overlay.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        hamburger.classList.remove("open");
+        overlay.classList.remove("show");
+      });
 
-  // Close menu on overlay click
-  overlay.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    hamburger.classList.remove('open');
-    overlay.classList.remove('show');
-  });
+      // Mobile dropdown toggle
+      moreButton.addEventListener("click", (e) => {
+        if (window.innerWidth <= 900) {
+          e.preventDefault();
+          moreDropdown.classList.toggle("open");
+          moreButton.setAttribute(
+            "aria-expanded",
+            moreDropdown.classList.contains("open")
+          );
+        }
+      });
 
-  // Mobile dropdown toggle
-  moreButton.addEventListener('click', (e) => {
-    if(window.innerWidth <= 900){
-      e.preventDefault();
-      moreDropdown.classList.toggle('open');
-      moreButton.setAttribute('aria-expanded', moreDropdown.classList.contains('open'));
-    }
-  });
+      // Close menu on dropdown link click (mobile)
+      document.querySelectorAll(".dropdown-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 900) {
+            navLinks.classList.remove("open");
+            hamburger.classList.remove("open");
+            overlay.classList.remove("show");
+          }
+        });
+      });
 
-  // Close menu on dropdown link click (mobile)
-  document.querySelectorAll('.dropdown-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      if(window.innerWidth <= 900){
-        navLinks.classList.remove('open');
-        hamburger.classList.remove('open');
-        overlay.classList.remove('show');
+      // Highlight current page
+      function getCurrentPage() {
+        let path = window.location.pathname;
+        let page = path.split("/").pop();
+        if (page === "" || page === "index.html") {
+          return "index.html";
+        }
+        return page;
       }
-    });
-  });
 
-  // Highlight current page
-  function getCurrentPage() {
-    let path = window.location.pathname;
-    let page = path.split("/").pop();
-    if(page === "") page = "index.html";
-    return page;
-  }
-
-  function setActiveLink() {
-    const currentPage = getCurrentPage();
-    navItems.forEach(link => {
-      const linkPage = link.getAttribute('href').split("/").pop();
-      if(linkPage === currentPage){
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
+      function setActiveLink() {
+        const currentPage = getCurrentPage();
+        navItems.forEach((link) => {
+          let linkPage = link.getAttribute("href").split("/").pop();
+          if (linkPage === "" || linkPage === "index.html") {
+            linkPage = "index.html";
+          }
+          if (linkPage === currentPage) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
       }
-    });
-  }
 
-  setActiveLink();
+      setActiveLink();
 
-  navItems.forEach(link => {
-    link.addEventListener('click', () => {
-      navItems.forEach(i => i.classList.remove('active'));
-      link.classList.add('active');
-    });
-  });
-})();
-</script>
-
+      navItems.forEach((link) => {
+        link.addEventListener("click", () => {
+          navItems.forEach((i) => i.classList.remove("active"));
+          link.classList.add("active");
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
