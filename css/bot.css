@@ -1,0 +1,114 @@
+body {
+  font-family: Roboto, "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+    sans-serif;
+  margin: 0;
+  user-select: none;
+}
+h3 {
+  margin: 0;
+}
+
+.bot-Icon {
+  z-index: 9999;
+  width: 3rem;
+  height: 3rem;
+  background-color: rgb(72, 152, 223);
+  border-radius: 50% 50% 50% 0%;
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.conversation {
+  z-index: 1001;
+  position: fixed;
+  top: 50%;
+  right: 80px;
+  width: 400px;
+  height: 0%;
+  background-color: rgb(126, 126, 126);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px gray;
+  transition: all 0.15s;
+}
+.conversation.open {
+  top: 10%;
+  background-color: rgb(255, 255, 255);
+  transition: all 0.15s;
+  height: 450px;
+  .input-bar {
+    border-radius: 0px 0px 10px 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 12%;
+    width: 100%;
+    border-top: 1px solid gray;
+    background-color: white;
+    position: absolute;
+    top: 88%;
+    bottom: 10px;
+    input {
+      height: 2rem;
+      width: 80%;
+    }
+    button {
+      height: 2rem;
+      width: 15%;
+    }
+  }
+}
+.message {
+  padding: 20px;
+  height: 100%;
+  overflow-y: scroll;
+}
+.content {
+  font-family: Roboto;
+  height: 73.5%;
+  h3 {
+    background-color: rgba(38, 175, 255, 0.644);
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px 10px 0px 0px;
+    font-family: Roboto;
+    font-weight: 400;
+  }
+  color: black;
+  display: none;
+}
+.content.disable {
+  display: block;
+}
+.outer {
+  z-index: 1000;
+  height: 100vh;
+  width: 100%;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.outer.display {
+  display: block;
+  background-color: transparent;
+  height: 100vh;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .conversation {
+    right: 0px;
+    width: 100%;
+  }
+  .conversation.openA {
+    height: 80%;
+  }
+  .bot-Icon {
+    bottom: 15px;
+  }
+}

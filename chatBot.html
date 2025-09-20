@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/bot.css" />
+    <title>Bot</title>
+  </head>
+  <body>
+    <div class="outer"></div>
+    <div class="conversation">
+      <div class="content">
+        <h3>Ask your Doubt!!!</h3>
+        <div id="chat" class="message"></div>
+        <div class="input-bar">
+          <input id="msg" placeholder="Type a message..." />
+          <button id="sendBtn">Send</button>
+        </div>
+      </div>
+    </div>
+    <div class="bot-Icon">
+      <img src="./assets/bot.svg" alt="Bot" />
+    </div>
+    <script>
+      const botIcon = document.querySelector(".bot-Icon");
+      const conversation = document.querySelector(".conversation");
+      const content = document.querySelector(".content");
+      const outer = document.querySelector(".outer");
+      botIcon.addEventListener("click", () => {
+        conversation.classList.toggle("open");
+        content.classList.toggle("disable");
+        if (conversation.classList.contains("open")) {
+          outer.classList.add("display");
+          outer.addEventListener("click", () => {
+            conversation.classList.remove("open");
+            content.classList.remove("disable");
+            outer.classList.remove("display");
+          });
+        } else {
+          outer.classList.remove("display");
+        }
+      });
+
+      const COMPANY_INFO = `
+        Our company, CodeNexIn, is a software innovation hub specializing in AI, cloud solutions, and digital products.
+        We aim to simplify technology for businesses and students through cutting-edge solutions.
+        `;
+
+      async function sendMessage() {
+        const msg = document.getElementById("msg").value;
+        const chat = document.getElementById("chat");
+
+        chat.innerHTML += `<p><b>You:</b> ${msg}</p>`;
+
+        const res = await fetch(
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBFnIDXfBMaLpUUs2c8GsLQlc_fdE6y2sQ",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [
+                {
+                  parts: [
+                    { text: "Company Info: " + COMPANY_INFO },
+                    { text: msg },
+                  ],
+                },
+              ],
+            }),
+          }
+        );
+
+        const data = await res.json();
+        const reply = data.candidates[0].content.parts[0].text;
+        chat.innerHTML += `<p><b>Bot:</b> ${reply}</p>`;
+
+        document.getElementById("msg").value = "";
+        chat.scrollTop = chat.scrollHeight;
+      }
+
+      document.getElementById("sendBtn").addEventListener("click", sendMessage);
+    </script>
+  </body>
+</html>
