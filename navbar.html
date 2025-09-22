@@ -19,6 +19,7 @@
   body {
     font-family: Arial, sans-serif;
     background: #f9f9f9;
+    padding: 20px;
   }
 
   /* Navbar */
@@ -33,6 +34,7 @@
     margin: 20px;
     position: relative;
     z-index: 1001;
+    min-height: 80px; /* Fixed height to prevent layout shift */
   }
   .logo {
     width: 60px;
@@ -53,25 +55,24 @@
     padding: 10px 16px;
     border-radius: 8px;
     font-size: 15px;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    border: 1px solid transparent;
+    position: relative;
   }
 
-  /* Active link: background + white text */
+  /* === MODIFIED CSS START === */
+  /* This new style block makes the hover and active states look the same, like in your video. */
+  .nav-links a:hover,
   .nav-links a.active {
-    background: linear-gradient(135deg, #00bfff, #007bff);
+    background-color: #007bff;
     color: #fff;
   }
+  /* === MODIFIED CSS END === */
 
-  /* Hover and focus on non-active links: only text color change, no background */
-  .nav-links a:not(.active):hover,
-  .nav-links a:not(.active):focus {
-    background: none;
-    color: #007bff;
-  }
 
   /* Dropdown */
   .dropdown-menu {
@@ -89,16 +90,25 @@
     gap: 10px 15px;
     list-style: none;
   }
+  /* Dropdown menu items */
   .dropdown-menu a {
     padding: 8px;
     color: #333;
     border-radius: 6px;
     font-size: 14px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
   }
-  .dropdown-menu a:hover {
-    background: #f0f8ff;
-    color: #007bff;
+  
+  /* === MODIFIED CSS START FOR DROPDOWN === */
+  /* Applying the same simple style to the dropdown menu links */
+  .dropdown-menu a:hover,
+  .dropdown-menu a.active {
+    background-color: #007bff;
+    color: #fff;
   }
+  /* === MODIFIED CSS END FOR DROPDOWN === */
+
   @media (hover: hover) and (pointer: fine) {
     .dropdown:hover > .dropdown-menu {
       display: grid;
@@ -109,16 +119,22 @@
   .auth-buttons {
     display: flex;
     gap: 15px;
+    align-items: center;
   }
   .auth-buttons a {
     padding: 8px 16px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #007bff;
+    display: inline-block;
+    text-align: center;
+    min-width: 70px;
   }
   .auth-buttons .login {
-    border: 2px solid #007bff;
     color: #007bff;
+    background: transparent;
   }
   .auth-buttons .login:hover {
     background: #007bff;
@@ -127,10 +143,10 @@
   .auth-buttons .signup {
     background: #007bff;
     color: #fff;
-    border: 2px solid #007bff;
   }
   .auth-buttons .signup:hover {
     background: #0056b3;
+    border-color: #0056b3;
   }
 
   /* Hamburger */
@@ -265,35 +281,70 @@
       display: flex;
     }
   }
+
+  /* Demo content */
+  .demo-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .demo-content h1 {
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+  .demo-content p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  .page-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 30px 0;
+  }
+  .page-button {
+    padding: 10px 15px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .page-button:hover {
+    background: #e0e0e0;
+  }
 </style>
 </head>
 <body>
   <header>
     <nav class="navbar">
-      <a href="index.html"><img src="assets/Logo.png" alt="Logo" class="logo" /></a>
+      <a href="home.html" onclick="simulatePage('home')"><img src="assets/Logo.png" alt="Logo" class="logo" /></a>
 
       <ul class="nav-links" id="nav-links">
-        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
-        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+        <li><a href="home.html" data-page="home" onclick="simulatePage('home')"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#about"></i> About</a></li>
+        <li><a href="Contact.html" data-page="contact" onclick="simulatePage('contact')"><i class="fas fa-envelope"></i> Contact</a></li>
 
         <li class="dropdown" id="more-dropdown">
-          <a href="#" id="more-button"><i class="fas fa-bars"></i> More ▾</a>
+          <a href="#more" id="more-button"><i class="fas fa-bars"></i> More ▾</a>
           <ul class="dropdown-menu">
-            <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li>
-            <li><a href="solutions.html"><i class="fas fa-lightbulb"></i> Solutions</a></li>
-            <li><a href="portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a></li>
-            <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
-            <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
-            <li><a href="research.html"><i class="fas fa-flask"></i> Research</a></li>
-            <li><a href="careers.html"><i class="fas fa-user-tie"></i> Careers</a></li>
-            <li><a href="partner.html"><i class="fas fa-handshake"></i> Partner</a></li>
+            <li><a href="#service" data-page="service" onclick="simulatePage('service')"><i class="fas fa-cogs"></i> Services</a></li>
+            <li><a href="#solutions" data-page="solutions" onclick="simulatePage('solutions')"><i class="fas fa-lightbulb"></i> Solutions</a></li>
+            <li><a href="portfolio.html" data-page="portfolio" onclick="simulatePage('portfolio')"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+            <li><a href="#blog" data-page="blog" onclick="simulatePage('blog')"><i class="fas fa-blog"></i> Blog</a></li>
+            <li><a href="events.html" data-page="events" onclick="simulatePage('events')"><i class="fas fa-calendar-alt"></i> Events</a></li>
+            <li><a href="#research" data-page="research" onclick="simulatePage('research')"><i class="fas fa-flask"></i> Research</a></li>
+            <li><a href="career.html" data-page="career" onclick="simulatePage('career')"><i class="fas fa-user-tie"></i> Careers</a></li>
+            <li><a href="partner.html" data-page="partner" onclick="simulatePage('partner')"><i class="fas fa-handshake"></i> Partner</a></li>
           </ul>
         </li>
 
         <div class="auth-buttons">
-          <a href="login.html" class="login">Login</a>
-          <a href="signup.html" class="signup">Sign Up</a>
+          <a href="login.html" class="login" data-page="login" onclick="simulatePage('login')">Login</a>
+          <a href="registration.html" class="signup" data-page="registration" onclick="simulatePage('registration')">Sign Up</a>
         </div>
       </ul>
 
@@ -306,85 +357,97 @@
   <div class="overlay" id="overlay"></div>
 
   <script>
-    (function () {
-      const hamburger = document.getElementById("hamburger");
-      const navLinks = document.getElementById("nav-links");
-      const overlay = document.getElementById("overlay");
-      const moreDropdown = document.getElementById("more-dropdown");
-      const moreButton = document.getElementById("more-button");
-      const navItems = document.querySelectorAll(".nav-links a");
+  document.addEventListener("DOMContentLoaded", function() {
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+    const overlay = document.getElementById("overlay");
+    const moreDropdown = document.getElementById("more-dropdown");
+    const moreButton = document.getElementById("more-button");
 
-      // Toggle mobile menu
-      hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("open");
-        hamburger.classList.toggle("open");
-        overlay.classList.toggle("show");
-      });
-
-      // Close menu on overlay click
-      overlay.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        hamburger.classList.remove("open");
-        overlay.classList.remove("show");
-      });
-
-      // Mobile dropdown toggle
-      moreButton.addEventListener("click", (e) => {
-        if (window.innerWidth <= 900) {
-          e.preventDefault();
-          moreDropdown.classList.toggle("open");
-          moreButton.setAttribute(
-            "aria-expanded",
-            moreDropdown.classList.contains("open")
-          );
-        }
-      });
-
-      // Close menu on dropdown link click (mobile)
-      document.querySelectorAll(".dropdown-menu a").forEach((link) => {
-        link.addEventListener("click", () => {
-          if (window.innerWidth <= 900) {
-            navLinks.classList.remove("open");
-            hamburger.classList.remove("open");
-            overlay.classList.remove("show");
-          }
-        });
-      });
-
-      // Highlight current page
-      function getCurrentPage() {
-        let path = window.location.pathname;
-        let page = path.split("/").pop();
-        if (page === "" || page === "index.html") {
-          return "index.html";
-        }
-        return page;
+    // Hamburger toggle function
+    function toggleMenu() {
+      const isOpen = navLinks.classList.contains("open");
+      hamburger.classList.toggle("open", !isOpen);
+      navLinks.classList.toggle("open", !isOpen);
+      overlay.classList.toggle("show", !isOpen);
+      
+      // Close dropdown when closing menu
+      if (!navLinks.classList.contains("open")) {
+        moreDropdown.classList.remove("open");
       }
+    }
 
-      function setActiveLink() {
-        const currentPage = getCurrentPage();
-        navItems.forEach((link) => {
-          let linkPage = link.getAttribute("href").split("/").pop();
-          if (linkPage === "" || linkPage === "index.html") {
-            linkPage = "index.html";
-          }
-          if (linkPage === currentPage) {
-            link.classList.add("active");
-          } else {
-            link.classList.remove("active");
-          }
-        });
+    // Toggle menu when clicking hamburger
+    hamburger.addEventListener("click", function(e) {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // Close menu when clicking overlay
+    overlay.addEventListener("click", function() {
+      if (navLinks.classList.contains("open")) {
+        toggleMenu();
       }
+    });
 
-      setActiveLink();
+    // Mobile dropdown toggle
+    moreButton.addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (window.innerWidth <= 900) {
+        moreDropdown.classList.toggle("open");
+      }
+    });
 
-      navItems.forEach((link) => {
-        link.addEventListener("click", () => {
-          navItems.forEach((i) => i.classList.remove("active"));
+    // Set the active link based on localStorage
+    function setActiveLink(page) {
+      const allNavLinks = document.querySelectorAll(".nav-links a[data-page], .dropdown-menu a[data-page], .auth-buttons a[data-page]");
+      
+      allNavLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("data-page") === page) {
           link.classList.add("active");
-        });
+        }
       });
-    })();
+    }
+    
+    // Function to handle clicks and update state
+    function handleLinkClick(pageName, event) {
+        event.preventDefault(); // Prevent default link behavior
+        localStorage.setItem('activePage', pageName);
+        setActiveLink(pageName);
+        
+        // In a real app, you would navigate here, e.g., window.location.href = event.target.href;
+        console.log(`Navigating to ${pageName}`);
+        
+        if (window.innerWidth <= 900 && navLinks.classList.contains("open")) {
+            toggleMenu();
+        }
+    }
+
+    // Attach click listeners to all navigation links
+    const allLinks = document.querySelectorAll(".nav-links a[data-page]");
+    allLinks.forEach(link => {
+      const page = link.getAttribute("data-page");
+      if (page) {
+        link.onclick = (event) => handleLinkClick(page, event);
+      }
+    });
+    
+    // On page load, check localStorage and set the active link
+    const activePage = localStorage.getItem('activePage') || 'home'; // Default to 'home'
+    setActiveLink(activePage);
+
+    // Close menu on window resize
+    window.addEventListener("resize", function() {
+      if (window.innerWidth > 900) {
+        if (navLinks.classList.contains("open")) {
+          toggleMenu();
+        }
+      }
+    });
+  });
   </script>
 </body>
 </html>
