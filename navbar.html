@@ -317,6 +317,34 @@
   .page-button:hover {
     background: #e0e0e0;
   }
+
+  /* Force hamburger and mobile menu when JS adds body.force-hamburger (for 150% zoom) */
+  body.force-hamburger .hamburger {
+    display: flex !important;
+  }
+
+  body.force-hamburger .nav-links {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 300px;
+    background: #fff;
+    flex-direction: column;
+    padding: 100px 20px 20px;
+    gap: 20px;
+    transform: translateX(100%);
+    transition: transform 0.35s ease-in-out;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+    z-index: 1002;
+    overflow-y: auto;
+  }
+
+  body.force-hamburger .nav-links.open {
+    transform: translateX(0) !important;
+    display: flex !important;
+  }
 </style>
 </head>
 <body>
@@ -340,6 +368,12 @@
             <li><a href="#research" data-page="research" onclick="simulatePage('research')"><i class="fas fa-flask"></i> Research</a></li>
             <li><a href="career.html" data-page="career" onclick="simulatePage('career')"><i class="fas fa-user-tie"></i> Careers</a></li>
             <li><a href="partner.html" data-page="partner" onclick="simulatePage('partner')"><i class="fas fa-handshake"></i> Partner</a></li>
+            <li><a href="customer_dash.html" data-page="customer" onclick="simulatePage('customer')"><i class="fas fa-tachometer-alt"></i> Customer Dashboard</a></li>
+           <li>
+  <a href="client_tracking.html" data-page="client" onclick="simulatePage('client')">
+    <i class="fas fa-chart-line"></i> Client Tracking
+  </a>
+</li>
           </ul>
         </li>
 

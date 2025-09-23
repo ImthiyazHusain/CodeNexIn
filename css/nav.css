@@ -194,15 +194,17 @@ body {
   flex-shrink: 0;
 }
 
-.hamburger span {
-  display: block;
-  height: 3px;
-  background-color: #333;
-  border-radius: 2px;
-  transition: all 0.3s ease;
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  width: 25px;
+  height: 20px;
+  justify-content: space-between;
+  flex-shrink: 0;
 }
 
-/* Show hamburger from 0 up to 1300px (covers ~110% zoom) */
+/* Show hamburger from 0 up to 1100px (move breakpoint lower so hamburger appears only at smaller viewports / heavier zoom like ~150%) */
 @media (max-width: 1300px) {
   .hamburger {
     display: flex;
