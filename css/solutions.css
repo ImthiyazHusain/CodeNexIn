@@ -1,14 +1,34 @@
+
 /* Base styling */
-body {
+/* body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f0f4ff;
     color: #333;
-}
+} */
+
+:root {
+        --primary-color: #1e90ff;
+        --primary-dark: #1c7ed6;
+        --text-secondary: #64748b;
+        --gray-300: #cbd5e1;
+        --gray-400: #94a3b8;
+        --gray-500: #64748b;
+        --white: #ffffff;
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --border-radius: 8px;
+      }
+
+
+ body{
+     background-color: rgb(243, 249, 255);
+ }
 
 .solution {
     display: flex;
+    /* background-color: black; */
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -16,6 +36,9 @@ body {
     text-align: center;
 }
 
+/* .soln1{
+    background-color: black;
+} */
 .soln1 span {
     /* background-color: #6c63ff; */
     background-color: rgb(97, 94, 154);
@@ -28,18 +51,24 @@ body {
 }
 
 .soln1 h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+    /* font-size: 2.5rem;
+    margin-bottom: 15px; */
+    font-size: 2.8rem;
+    /* font-weight: bold; */
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .soln1 p {
     font-size: 1.1rem;
-    max-width: 700px;
-    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
     color: #555;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .soln2 {
+    /* background-color: blue; */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -51,18 +80,22 @@ body {
 
 .soln3 h1 {
     font-size: 2rem;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .soln3 p {
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
     color: #555;
-    margin-bottom: 20px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .soln3 button {
-    /* background-color: #6c63ff; */
-    background-color: rgb(97, 94, 154);
+ 
+    background-color: rgb(145, 170, 228); 
     color: white;
     border: none;
     padding: 12px 25px;
@@ -75,7 +108,7 @@ body {
 
 .soln3 button:hover {
     /* background-color: #5750d4; */
-    background-color: rgb(145, 170, 228);
+    /* background-color: rgb(145, 170, 228); */
 }
 
 /* Responsive styles */

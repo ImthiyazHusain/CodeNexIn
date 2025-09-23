@@ -1,3 +1,19 @@
+:root {
+        --primary-color: #1e90ff;
+        --primary-dark: #1c7ed6;
+        --text-secondary: #64748b;
+        --gray-300: #cbd5e1;
+        --gray-400: #94a3b8;
+        --gray-500: #64748b;
+        --white: #ffffff;
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --border-radius: 8px;
+      }
+
+
+
+
 /* General Reset and Base */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -133,7 +149,9 @@ body {
 /* Button Styling */
 button {
     align-self: flex-start;
-    background-color: rgb(97, 94, 154);
+    /* background-color: rgb(97, 94, 154); */
+    background-color: rgb(145, 170, 228);
+    
     color: white;
     border: none;
     padding: 10px 22px;
@@ -145,7 +163,7 @@ button {
 }
 
 button:hover {
-    background-color: rgb(145, 170, 228);
+    /* background-color: rgb(145, 170, 228); */
 }
 
 /* Consultation Section (Bottom) */
@@ -172,7 +190,7 @@ button:hover {
 }
 
 .conslt button {
-    background-color: rgb(97, 94, 154);
+    /* background-color: rgb(97, 94, 154); */
     color: white;
     border: none;
     padding: 12px 28px;
@@ -185,7 +203,7 @@ button:hover {
 }
 
 .conslt button:hover {
-    background-color: rgb(145, 170, 228);
+    /* background-color: rgb(145, 170, 228); */
 }
 
 /* Responsive Design */
