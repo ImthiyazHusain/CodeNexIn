@@ -6,17 +6,17 @@ fetch("navbar.html")
   .then((data) => {
     const navbarDiv = document.getElementById("navbar");
     navbarDiv.innerHTML = data;
-    
+
     // Wait a moment for DOM to update
     setTimeout(() => {
       // Get hamburger menu elements
       const hamburger = document.getElementById('hamburger');
       const navLinks = document.getElementById('nav-links');
       const overlay = document.getElementById('overlay');
-      
+
       if (hamburger && navLinks && overlay) {
         console.log("Hamburger elements found, adding event listeners");
-        
+
         // Toggle mobile menu
         hamburger.addEventListener('click', function() {
           console.log("Hamburger clicked");
@@ -24,18 +24,18 @@ fetch("navbar.html")
           hamburger.classList.toggle('open');
           overlay.classList.toggle('show');
         });
-        
+
         // Close menu if overlay clicked
         overlay.addEventListener('click', function() {
           navLinks.classList.remove('open');
           hamburger.classList.remove('open');
           overlay.classList.remove('show');
         });
-        
+
         // Mobile dropdown toggle
         const moreDropdown = document.getElementById('more-dropdown');
         const moreButton = document.getElementById('more-button');
-        
+
         if (moreButton && moreDropdown) {
           moreButton.addEventListener('click', function(e) {
             if(window.innerWidth <= 900){
@@ -45,7 +45,7 @@ fetch("navbar.html")
             }
           });
         }
-        
+
         // Close menu on dropdown link click
         document.querySelectorAll('.dropdown-menu a').forEach(link => {
           link.addEventListener('click', function() {
@@ -57,20 +57,20 @@ fetch("navbar.html")
           });
         });
       }
-      
+
       // Highlight active nav link based on current page
       const navItems = document.querySelectorAll('.nav-links > li > a');
       const currentPage = window.location.pathname.split("/").pop().toLowerCase() || 'index.html';
       console.log("Current page:", currentPage);
-      
+
       let found = false;
-      
+
       navItems.forEach(item => {
         const href = item.getAttribute('href').toLowerCase();
         console.log("Checking link:", href);
-        
+
         // Check if the current page matches the href or if it's the same page without .html
-        if (href === currentPage || 
+        if (href === currentPage ||
             href.replace('.html', '') === currentPage.replace('.html', '') ||
             (currentPage === 'contact.html' && href === 'contact.html') ||
             (currentPage === 'portfolio.html' && href === 'portfolio.html') ||
@@ -81,7 +81,7 @@ fetch("navbar.html")
           found = true;
         }
       });
-      
+
       if (!found && (currentPage === 'index.html' || currentPage === '')) {
         const homeLink = document.querySelector('.nav-links > li > a[href="index.html"]');
         if (homeLink) {
@@ -91,6 +91,32 @@ fetch("navbar.html")
       }
     }, 100); // Small delay to ensure DOM is updated
   });
+
+// Zoom-based hamburger toggle (150% zoom detection)
+(function() {
+  function updateHamburgerByZoom(){
+    var dpr = window.devicePixelRatio || 1;
+    if (dpr >= 1.5) {
+      document.body.classList.add('force-hamburger');
+    } else {
+      document.body.classList.remove('force-hamburger');
+    }
+  }
+  // Initial check
+  updateHamburgerByZoom();
+
+  // Re-check on resize (user may change zoom or window size)
+  window.addEventListener('resize', updateHamburgerByZoom);
+
+  // Poll for devicePixelRatio changes (some browsers don't fire events for zoom)
+  var lastDpr = window.devicePixelRatio;
+  setInterval(function(){
+    if (window.devicePixelRatio !== lastDpr) {
+      lastDpr = window.devicePixelRatio;
+      updateHamburgerByZoom();
+    }
+  }, 500);
+})();
 
 // Load Footer
 fetch("footer.html")

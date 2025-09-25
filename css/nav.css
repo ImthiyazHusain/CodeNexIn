@@ -357,3 +357,40 @@ body {
 .hamburger.open span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
+
+/* Force hamburger and mobile menu when user zooms to >=150% */
+body.force-hamburger .hamburger {
+  display: flex !important;
+}
+
+body.force-hamburger .nav-links {
+  /* Use mobile-style hidden state that becomes open when toggled */
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 80px;
+  box-shadow: none;
+  border-radius: 0;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  gap: 20px;
+  overflow-y: auto;
+  z-index: 9999;
+}
+
+body.force-hamburger .nav-links.open {
+  display: flex !important;
+  transform: translateX(0) !important;
+}
+
+body.force-hamburger .nav-links li a {
+  font-size: 18px;
+  padding: 12px 20px;
+}

@@ -100,7 +100,7 @@
     border: 1px solid transparent;
     transition: all 0.3s ease;
   }
-  
+
   /* === MODIFIED CSS START FOR DROPDOWN === */
   /* Applying the same simple style to the dropdown menu links */
   .dropdown-menu a:hover,
@@ -317,34 +317,6 @@
   .page-button:hover {
     background: #e0e0e0;
   }
-
-  /* Force hamburger and mobile menu when JS adds body.force-hamburger (for 150% zoom) */
-  body.force-hamburger .hamburger {
-    display: flex !important;
-  }
-
-  body.force-hamburger .nav-links {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 300px;
-    background: #fff;
-    flex-direction: column;
-    padding: 100px 20px 20px;
-    gap: 20px;
-    transform: translateX(100%);
-    transition: transform 0.35s ease-in-out;
-    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
-    z-index: 1002;
-    overflow-y: auto;
-  }
-
-  body.force-hamburger .nav-links.open {
-    transform: translateX(0) !important;
-    display: flex !important;
-  }
 </style>
 </head>
 <body>
@@ -405,7 +377,7 @@
       hamburger.classList.toggle("open", !isOpen);
       navLinks.classList.toggle("open", !isOpen);
       overlay.classList.toggle("show", !isOpen);
-      
+
       // Close dropdown when closing menu
       if (!navLinks.classList.contains("open")) {
         moreDropdown.classList.remove("open");
@@ -429,7 +401,7 @@
     moreButton.addEventListener("click", function(e) {
       e.preventDefault();
       e.stopPropagation();
-      
+
       if (window.innerWidth <= 900) {
         moreDropdown.classList.toggle("open");
       }
@@ -438,7 +410,7 @@
     // Set the active link based on localStorage
     function setActiveLink(page) {
       const allNavLinks = document.querySelectorAll(".nav-links a[data-page], .dropdown-menu a[data-page], .auth-buttons a[data-page]");
-      
+
       allNavLinks.forEach(link => {
         link.classList.remove("active");
         if (link.getAttribute("data-page") === page) {
@@ -446,16 +418,16 @@
         }
       });
     }
-    
+
     // Function to handle clicks and update state
     function handleLinkClick(pageName, event) {
         event.preventDefault(); // Prevent default link behavior
         localStorage.setItem('activePage', pageName);
         setActiveLink(pageName);
-        
+
         // In a real app, you would navigate here, e.g., window.location.href = event.target.href;
         console.log(`Navigating to ${pageName}`);
-        
+
         if (window.innerWidth <= 900 && navLinks.classList.contains("open")) {
             toggleMenu();
         }
@@ -469,7 +441,7 @@
         link.onclick = (event) => handleLinkClick(page, event);
       }
     });
-    
+
     // On page load, check localStorage and set the active link
     const activePage = localStorage.getItem('activePage') || 'home'; // Default to 'home'
     setActiveLink(activePage);

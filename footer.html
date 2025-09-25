@@ -1,20 +1,31 @@
-<!-- Footer fragment (injected) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enhanced Footer Example</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Footer-scoped styles (safe to inject as fragment) */
+/* --- General Setup --- */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: #f0f2f5;
+    color: #E0E2E8;
+}
+
+/* --- Footer Container --- */
 .site-footer {
-    font-family: 'Inter', sans-serif; /* use Inter if available on host page */
     background-color: #0D1128;
     padding: 20px 20px 10px;
     margin-top: 0;
-    color: #A9B2CC;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px; /* keep site gutters aligned */
 }
 
 /* --- Footer Top Grid --- */
@@ -495,4 +506,5 @@ document.getElementById('newsletterForm').addEventListener('submit', function(e)
     }, 5000);
 });
 </script>
-<!-- footer fragment ends -->
+</body>
+</html>
