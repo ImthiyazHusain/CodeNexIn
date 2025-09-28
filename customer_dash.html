@@ -1,275 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TechCorp Solutions - Project Dashboard</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
 
     <style>
-        /* Basic Reset and Font Setup */
-        :root {
-            --bg-main: #f4f7fe;
-            --bg-card: #ffffff;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --border-color: #e2e8f0;
-            --blue-accent: #3b82f6;
-            --green-accent: #22c55e;
-            --purple-accent: #8b5cf6;
-            --orange-accent: #f97316;
-            --yellow-accent: #f59e0b;
-            --red-accent: #ef4444;
+      /* Basic Reset and Font Setup */
+      :root {
+        --bg-main: #f4f7fe;
+        --bg-card: #ffffff;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --border-color: #e2e8f0;
+        --blue-accent: #3b82f6;
+        --green-accent: #22c55e;
+        --purple-accent: #8b5cf6;
+        --orange-accent: #f97316;
+        --yellow-accent: #f59e0b;
+        --red-accent: #ef4444;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      .dashboard-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 2rem;
+      }
+
+      header h1 {
+        font-size: 1.75rem;
+        font-weight: 600;
+      }
+      header p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+      .header-controls {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .control-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+      .control-item:hover {
+        color: var(--blue-accent);
+      }
+
+      /* Stats Cards */
+      .stats-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .stat-card {
+        background: var(--bg-card);
+        padding: 1.5rem;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .card-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: #fff;
+        flex-shrink: 0;
+      }
+      .card-icon.blue {
+        background-color: var(--blue-accent);
+      }
+      .card-icon.green {
+        background-color: var(--green-accent);
+      }
+      .card-icon.purple {
+        background-color: var(--purple-accent);
+      }
+      .card-icon.star {
+        background-color: var(--yellow-accent);
+      }
+      .card-info .count,
+      .card-info .name,
+      .card-info .date {
+        font-size: 1.5rem;
+        font-weight: 600;
+        display: block;
+      }
+      .card-info p {
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+      }
+
+      /* Main Content: Tabs and Projects */
+      .tabs ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 2rem;
+      }
+      .tabs a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        padding: 0.75rem 0.25rem;
+        display: inline-block;
+        border-bottom: 2px solid transparent;
+        font-weight: 500;
+      }
+      .tabs a i {
+        margin-right: 0.5rem;
+      }
+      .tabs a.active,
+      .tabs a:hover {
+        color: var(--blue-accent);
+        border-bottom-color: var(--blue-accent);
+      }
+
+      /* Tab Content Styling */
+      .tab-content {
+        display: none;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .tab-content.active {
+        display: grid;
+      }
+      .tab-content.placeholder {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        min-height: 400px;
+        background-color: var(--bg-card);
+        border-radius: 12px;
+        color: var(--text-secondary);
+      }
+      .tab-content.placeholder.active {
+        display: flex;
+      }
+      .placeholder i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #cbd5e1;
+      }
+      .placeholder h2 {
+        font-size: 1.5rem;
+        color: var(--text-primary);
+      }
+
+      .project-card {
+        background-color: var(--bg-card);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+      .project-card .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .project-card h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+      .status {
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #fff;
+      }
+      .status.in-progress {
+        background-color: var(--blue-accent);
+      }
+      .status.testing {
+        background-color: var(--orange-accent);
+      }
+      .status.completed {
+        background-color: var(--green-accent);
+      }
+
+      .progress-section {
+        margin-bottom: 1.5rem;
+      }
+      .progress-info {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+      }
+      .progress-bar-container {
+        width: 100%;
+        height: 8px;
+        background-color: #e2e8f0;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .progress-bar {
+        height: 100%;
+        background-color: var(--blue-accent);
+        border-radius: 4px;
+      }
+
+      .project-details {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0;
+        margin-bottom: 1rem;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .detail-item {
+        text-align: left;
+        flex-basis: 30%;
+      }
+      .detail-item label {
+        display: block;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+      }
+      .detail-item span {
+        font-weight: 500;
+      }
+
+      .milestones,
+      .recent-updates {
+        margin-top: 1.5rem;
+      }
+      .milestones h3,
+      .recent-updates h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+      .milestones ul,
+      .recent-updates ul {
+        list-style: none;
+      }
+      .milestones li,
+      .recent-updates li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .milestones li:last-child,
+      .recent-updates li:last-child {
+        border-bottom: none;
+      }
+      .milestones li div {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .milestones li i.fa-spinner {
+        animation: spin 2s linear infinite;
+      }
+      @keyframes spin {
+        100% {
+          transform: rotate(360deg);
         }
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      .status-badge {
+        text-transform: capitalize;
+        font-size: 0.8rem;
+        padding: 0.2rem 0.6rem;
+        border-radius: 6px;
+      }
+      .status-badge.completed {
+        background-color: #dcfce7;
+        color: #166534;
+      }
+      .status-badge.in-progress {
+        background-color: #dbeafe;
+        color: #1e40af;
+      }
+      .status-badge.pending {
+        background-color: #f1f5f9;
+        color: #475569;
+      }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        .dashboard-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 2rem;
-        }
-
-        /* Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        header h1 { font-size: 1.75rem; font-weight: 600; }
-        header p { color: var(--text-secondary); font-size: 0.9rem; }
-        .header-controls { display: flex; gap: 1.5rem; }
-
-        .control-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .control-item:hover { color: var(--blue-accent); }
-
-        /* Stats Cards */
-        .stats-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        }
-
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: #fff;
-            flex-shrink: 0;
-        }
-        .card-icon.blue { background-color: var(--blue-accent); }
-        .card-icon.green { background-color: var(--green-accent); }
-        .card-icon.purple { background-color: var(--purple-accent); }
-        .card-icon.star { background-color: var(--yellow-accent); }
-        .card-info .count, .card-info .name, .card-info .date { font-size: 1.5rem; font-weight: 600; display: block; }
-        .card-info p { color: var(--text-secondary); font-size: 0.85rem; }
-
-        /* Main Content: Tabs and Projects */
-        .tabs ul { list-style: none; display: flex; gap: 1rem; border-bottom: 1px solid var(--border-color); margin-bottom: 2rem; }
-        .tabs a { text-decoration: none; color: var(--text-secondary); padding: 0.75rem 0.25rem; display: inline-block; border-bottom: 2px solid transparent; font-weight: 500; }
-        .tabs a i { margin-right: 0.5rem; }
-        .tabs a.active, .tabs a:hover { color: var(--blue-accent); border-bottom-color: var(--blue-accent); }
-
-        /* Tab Content Styling */
-        .tab-content { display: none; grid-template-columns: 1fr; gap: 2rem; }
-        .tab-content.active { display: grid; }
-        .tab-content.placeholder { display: none; justify-content: center; align-items: center; flex-direction: column; text-align: center; min-height: 400px; background-color: var(--bg-card); border-radius: 12px; color: var(--text-secondary); }
-        .tab-content.placeholder.active { display: flex; }
-        .placeholder i { font-size: 3rem; margin-bottom: 1rem; color: #cbd5e1; }
-        .placeholder h2 { font-size: 1.5rem; color: var(--text-primary); }
-
-        .project-card {
-            background-color: var(--bg-card);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
-        .project-card .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-        .project-card h2 { font-size: 1.25rem; font-weight: 600; }
-        .status { padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 500; color: #fff; }
-        .status.in-progress { background-color: var(--blue-accent); }
-        .status.testing { background-color: var(--orange-accent); }
-        .status.completed { background-color: var(--green-accent); }
-
-        .progress-section { margin-bottom: 1.5rem; }
-        .progress-info { display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
-        .progress-bar-container { width: 100%; height: 8px; background-color: #e2e8f0; border-radius: 4px; overflow: hidden; }
-        .progress-bar { height: 100%; background-color: var(--blue-accent); border-radius: 4px; }
-
-        .project-details { display: flex; justify-content: space-between; padding: 1rem 0; margin-bottom: 1rem; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-        .detail-item { text-align: left; flex-basis: 30%; }
-        .detail-item label { display: block; color: var(--text-secondary); font-size: 0.85rem; }
-        .detail-item span { font-weight: 500; }
-
-        .milestones, .recent-updates { margin-top: 1.5rem; }
-        .milestones h3, .recent-updates h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; }
-        .milestones ul, .recent-updates ul { list-style: none; }
-        .milestones li, .recent-updates li { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
-        .milestones li:last-child, .recent-updates li:last-child { border-bottom: none; }
-        .milestones li div { display: flex; align-items: center; gap: 0.75rem; }
-        .milestones li i.fa-spinner { animation: spin 2s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        .status-badge { text-transform: capitalize; font-size: 0.8rem; padding: 0.2rem 0.6rem; border-radius: 6px; }
-        .status-badge.completed { background-color: #dcfce7; color: #166534; }
-        .status-badge.in-progress { background-color: #dbeafe; color: #1e40af; }
-        .status-badge.pending { background-color: #f1f5f9; color: #475569; }
-
-        .recent-updates .team-name { font-weight: 600; }
-        .recent-updates .update-text { font-size: 0.9rem; color: var(--text-secondary); }
-        .recent-updates .update-date { font-size: 0.85rem; color: var(--text-secondary); white-space: nowrap; }
+      .recent-updates .team-name {
+        font-weight: 600;
+      }
+      .recent-updates .update-text {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+      .recent-updates .update-date {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        white-space: nowrap;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
+    <div id="navbar"></div>
     <div class="dashboard-container">
-        <header>
-            <div class="header-welcome">
-                <h1>Welcome back, TechCorp Solutions</h1>
-                <p>Track your projects, milestones, and stay updated with your development progress.</p>
-            </div>
-            <div class="header-controls">
-                <!-- Notifications and Logout removed as requested -->
-            </div>
-        </header>
+      <header>
+        <div class="header-welcome">
+          <h1>Welcome back, TechCorp Solutions</h1>
+          <p>
+            Track your projects, milestones, and stay updated with your
+            development progress.
+          </p>
+        </div>
+        <div class="header-controls">
+          <!-- Notifications and Logout removed as requested -->
+        </div>
+      </header>
 
-        <section class="stats-cards">
-            <p>Loading stats...</p>
-        </section>
+      <section class="stats-cards">
+        <p>Loading stats...</p>
+      </section>
 
-        <main>
-            <nav class="tabs">
-                <ul>
-                    <li><a href="#" class="tab-link active" data-target="projects"><i class="fa-solid fa-list-check"></i> Projects</a></li>
-                    <li><a href="#" class="tab-link" data-target="invoices"><i class="fa-solid fa-file-invoice"></i> Invoices</a></li>
-                    <li><a href="#" class="tab-link" data-target="reports"><i class="fa-solid fa-chart-pie"></i> Reports</a></li>
-                    <li><a href="#" class="tab-link" data-target="updates"><i class="fa-solid fa-arrows-rotate"></i> Updates</a></li>
-                </ul>
-            </nav>
+      <main>
+        <nav class="tabs">
+          <ul>
+            <li>
+              <a href="#" class="tab-link active" data-target="projects"
+                ><i class="fa-solid fa-list-check"></i> Projects</a
+              >
+            </li>
+            <li>
+              <a href="#" class="tab-link" data-target="invoices"
+                ><i class="fa-solid fa-file-invoice"></i> Invoices</a
+              >
+            </li>
+            <li>
+              <a href="#" class="tab-link" data-target="reports"
+                ><i class="fa-solid fa-chart-pie"></i> Reports</a
+              >
+            </li>
+            <li>
+              <a href="#" class="tab-link" data-target="updates"
+                ><i class="fa-solid fa-arrows-rotate"></i> Updates</a
+              >
+            </li>
+          </ul>
+        </nav>
 
-            <div class="tab-content-area">
-                <section id="projects" class="tab-content active">
-                    <p>Loading projects...</p>
-                </section>
+        <div class="tab-content-area">
+          <section id="projects" class="tab-content active">
+            <p>Loading projects...</p>
+          </section>
 
-                <section id="invoices" class="tab-content placeholder">
-                    <i class="fa-solid fa-file-invoice"></i><h2>Invoices Page</h2><p>This area will display all the invoices.</p>
-                </section>
-                <section id="reports" class="tab-content placeholder">
-                    <i class="fa-solid fa-chart-pie"></i><h2>Reports Page</h2><p>This area will display project reports and analytics.</p>
-                </section>
-                <section id="updates" class="tab-content placeholder">
-                    <i class="fa-solid fa-arrows-rotate"></i><h2>Updates Page</h2><p>This area will show the latest updates across all projects.</p>
-                </section>
-            </div>
-        </main>
+          <section id="invoices" class="tab-content placeholder">
+            <i class="fa-solid fa-file-invoice"></i>
+            <h2>Invoices Page</h2>
+            <p>This area will display all the invoices.</p>
+          </section>
+          <section id="reports" class="tab-content placeholder">
+            <i class="fa-solid fa-chart-pie"></i>
+            <h2>Reports Page</h2>
+            <p>This area will display project reports and analytics.</p>
+          </section>
+          <section id="updates" class="tab-content placeholder">
+            <i class="fa-solid fa-arrows-rotate"></i>
+            <h2>Updates Page</h2>
+            <p>This area will show the latest updates across all projects.</p>
+          </section>
+        </div>
+      </main>
     </div>
-
+    <div id="footer"></div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- 1. RANDOM DATA GENERATOR (For Testing) ---
+        function generateRandomData() {
+          const projectNames = [
+            "E-commerce Platform",
+            "AI Chatbot Integration",
+            "Mobile App (iOS & Android)",
+            "Cloud Migration",
+            "Data Analytics Dashboard",
+          ];
+          const statuses = [
+            { name: "In Progress", class: "in-progress" },
+            { name: "Testing", class: "testing" },
+            { name: "Completed", class: "completed" },
+          ];
 
-            // --- 1. RANDOM DATA GENERATOR (For Testing) ---
-            function generateRandomData() {
-                const projectNames = ["E-commerce Platform", "AI Chatbot Integration", "Mobile App (iOS & Android)", "Cloud Migration", "Data Analytics Dashboard"];
-                const statuses = [{name: "In Progress", class: "in-progress"}, {name: "Testing", class: "testing"}, {name: "Completed", class: "completed"}];
+          let projects = [];
+          for (let i = 0; i < projectNames.length; i++) {
+            let randomStatus =
+              statuses[Math.floor(Math.random() * statuses.length)];
+            let progress =
+              randomStatus.name === "Completed"
+                ? 100
+                : Math.floor(Math.random() * 80) + 10;
+            projects.push({
+              id: i + 1,
+              title: projectNames[i],
+              status: randomStatus.name,
+              statusClass: randomStatus.class,
+              progress: progress,
+              startDate: "15/07/2025",
+              estCompletion: "20/12/2025",
+              budget: {
+                current: Math.floor(Math.random() * 40000) + 5000,
+                total: 50000,
+              },
+              milestones: [
+                { name: "Planning", status: "completed" },
+                { name: "Design", status: "completed" },
+                { name: "Development", status: "in-progress" },
+                { name: "Testing", status: "pending" },
+              ],
+              updates: [
+                {
+                  team: "Dev Team",
+                  text: "Module A is now in testing phase.",
+                  date: "22/09/2025",
+                },
+              ],
+            });
+          }
 
-                let projects = [];
-                for (let i = 0; i < projectNames.length; i++) {
-                    let randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-                    let progress = (randomStatus.name === "Completed") ? 100 : Math.floor(Math.random() * 80) + 10;
-                    projects.push({
-                        id: i + 1,
-                        title: projectNames[i],
-                        status: randomStatus.name,
-                        statusClass: randomStatus.class,
-                        progress: progress,
-                        startDate: "15/07/2025",
-                        estCompletion: "20/12/2025",
-                        budget: { current: Math.floor(Math.random() * 40000) + 5000, total: 50000 },
-                        milestones: [
-                            { name: "Planning", status: "completed" },
-                            { name: "Design", status: "completed" },
-                            { name: "Development", status: "in-progress" },
-                            { name: "Testing", status: "pending" },
-                        ],
-                        updates: [
-                            { team: "Dev Team", text: "Module A is now in testing phase.", date: "22/09/2025" }
-                        ]
-                    });
-                }
+          return {
+            summaryStats: {
+              activeProjects: projects.filter((p) => p.status !== "Completed")
+                .length,
+              completed: projects.filter((p) => p.status === "Completed")
+                .length,
+              accountManager: "Sarah Johnson",
+              memberSince: "15/03/2024",
+            },
+            projects: projects,
+          };
+        }
 
-                return {
-                    summaryStats: {
-                        activeProjects: projects.filter(p => p.status !== "Completed").length,
-                        completed: projects.filter(p => p.status === "Completed").length,
-                        accountManager: "Sarah Johnson",
-                        memberSince: "15/03/2024"
-                    },
-                    projects: projects
-                };
-            }
+        // --- 2. DATA FETCHING FUNCTION ---
+        async function fetchData() {
+          console.log("Fetching data...");
 
-            // --- 2. DATA FETCHING FUNCTION ---
-            async function fetchData() {
-                console.log("Fetching data...");
+          // **CURRENT METHOD: Using random data**
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              console.log("Generated random data for testing.");
+              resolve(generateRandomData());
+            }, 500);
+          });
 
-                // **CURRENT METHOD: Using random data**
-                return new Promise(resolve => {
-                    setTimeout(() => {
-                        console.log("Generated random data for testing.");
-                        resolve(generateRandomData());
-                    }, 500);
-                });
-
-                // **BACKEND TEAM: YAHAN CHANGE KAREN**
-                // Jab real API ban jaye, to upar wala Promise code hata kar neeche wala code uncomment kar den.
-                /*
+          // **BACKEND TEAM: YAHAN CHANGE KAREN**
+          // Jab real API ban jaye, to upar wala Promise code hata kar neeche wala code uncomment kar den.
+          /*
                 try {
                     const response = await fetch('https://your-api-url.com/dashboard-data');
                     if (!response.ok) throw new Error('Network response was not ok');
@@ -281,80 +509,117 @@
                     return { summaryStats: {}, projects: [] };
                 }
                 */
-            }
+        }
 
-            // --- 3. RENDERING FUNCTIONS (To build HTML) ---
-            function renderSummaryStats(stats) {
-                const container = document.querySelector('.stats-cards');
-                if (!stats.activeProjects) {
-                     container.innerHTML = `<p>Could not load summary stats.</p>`;
-                     return;
-                }
-                container.innerHTML = `
+        // --- 3. RENDERING FUNCTIONS (To build HTML) ---
+        function renderSummaryStats(stats) {
+          const container = document.querySelector(".stats-cards");
+          if (!stats.activeProjects) {
+            container.innerHTML = `<p>Could not load summary stats.</p>`;
+            return;
+          }
+          container.innerHTML = `
                     <div class="stat-card"><div class="card-icon blue"><i class="fa-solid fa-briefcase"></i></div><div class="card-info"><span class="count">${stats.activeProjects}</span><p>Active Projects</p></div></div>
                     <div class="stat-card"><div class="card-icon green"><i class="fa-solid fa-check-double"></i></div><div class="card-info"><span class="count">${stats.completed}</span><p>Completed</p></div></div>
                     <div class="stat-card"><div class="card-icon purple"><i class="fa-regular fa-user"></i></div><div class="card-info"><span class="name">${stats.accountManager}</span><p>Account Manager</p></div></div>
                     <div class="stat-card"><div class="card-icon star"><i class="fa-regular fa-star"></i></div><div class="card-info"><span class="date">${stats.memberSince}</span><p>Member Since</p></div></div>
                 `;
-            }
+        }
 
-            function renderProjects(projects) {
-                const container = document.getElementById('projects');
-                if (!projects || projects.length === 0) {
-                    container.innerHTML = `<p>No projects found.</p>`;
-                    return;
-                }
-                const milestoneIcons = { completed: 'fa-regular fa-circle-check', 'in-progress': 'fa-solid fa-spinner', pending: 'fa-regular fa-circle' };
-                container.innerHTML = projects.map(project => `
+        function renderProjects(projects) {
+          const container = document.getElementById("projects");
+          if (!projects || projects.length === 0) {
+            container.innerHTML = `<p>No projects found.</p>`;
+            return;
+          }
+          const milestoneIcons = {
+            completed: "fa-regular fa-circle-check",
+            "in-progress": "fa-solid fa-spinner",
+            pending: "fa-regular fa-circle",
+          };
+          container.innerHTML = projects
+            .map(
+              (project) => `
                     <div class="project-card">
-                        <div class="card-header"><h2>${project.title}</h2><span class="status ${project.statusClass}">${project.status}</span></div>
+                        <div class="card-header"><h2>${
+                          project.title
+                        }</h2><span class="status ${project.statusClass}">${
+                project.status
+              }</span></div>
                         <div class="progress-section">
-                            <div class="progress-info"><span>Overall Progress</span><span>${project.progress}%</span></div>
-                            <div class="progress-bar-container"><div class="progress-bar" style="width: ${project.progress}%;"></div></div>
+                            <div class="progress-info"><span>Overall Progress</span><span>${
+                              project.progress
+                            }%</span></div>
+                            <div class="progress-bar-container"><div class="progress-bar" style="width: ${
+                              project.progress
+                            }%;"></div></div>
                         </div>
                         <div class="project-details">
-                            <div class="detail-item"><label>Start Date</label><span>${project.startDate}</span></div>
-                            <div class="detail-item"><label>Est. Completion</label><span>${project.estCompletion}</span></div>
+                            <div class="detail-item"><label>Start Date</label><span>${
+                              project.startDate
+                            }</span></div>
+                            <div class="detail-item"><label>Est. Completion</label><span>${
+                              project.estCompletion
+                            }</span></div>
                             <div class="detail-item"><label>Budget Status</label><span>$${project.budget.current.toLocaleString()} / $${project.budget.total.toLocaleString()}</span></div>
                         </div>
                         <div class="milestones">
                             <h3>Project Milestones</h3>
-                            <ul>${project.milestones.map(m => `<li><div><i class="${milestoneIcons[m.status]}"></i> ${m.name}</div><span class="status-badge ${m.status}">${m.status}</span></li>`).join('')}</ul>
+                            <ul>${project.milestones
+                              .map(
+                                (m) =>
+                                  `<li><div><i class="${
+                                    milestoneIcons[m.status]
+                                  }"></i> ${
+                                    m.name
+                                  }</div><span class="status-badge ${
+                                    m.status
+                                  }">${m.status}</span></li>`
+                              )
+                              .join("")}</ul>
                         </div>
                         <div class="recent-updates">
                             <h3>Recent Updates</h3>
-                            <ul>${project.updates.map(u => `<li><div><p class="team-name">${u.team}</p><p class="update-text">${u.text}</p></div><span class="update-date">${u.date}</span></li>`).join('')}</ul>
+                            <ul>${project.updates
+                              .map(
+                                (u) =>
+                                  `<li><div><p class="team-name">${u.team}</p><p class="update-text">${u.text}</p></div><span class="update-date">${u.date}</span></li>`
+                              )
+                              .join("")}</ul>
                         </div>
                     </div>
-                `).join('');
-            }
+                `
+            )
+            .join("");
+        }
 
-            // --- 4. TAB SWITCHING LOGIC ---
-            const tabLinks = document.querySelectorAll('.tab-link');
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.getElementById(this.dataset.target);
-                    tabLinks.forEach(l => l.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
-                    this.classList.add('active');
-                    if (target) target.classList.add('active');
-                });
-            });
-
-            // --- 5. INITIALIZE DASHBOARD ON PAGE LOAD ---
-            async function initializeDashboard() {
-                const data = await fetchData();
-                if (data) {
-                    renderSummaryStats(data.summaryStats);
-                    renderProjects(data.projects);
-                }
-            }
-
-            initializeDashboard();
+        // --- 4. TAB SWITCHING LOGIC ---
+        const tabLinks = document.querySelectorAll(".tab-link");
+        const tabContents = document.querySelectorAll(".tab-content");
+        tabLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.getElementById(this.dataset.target);
+            tabLinks.forEach((l) => l.classList.remove("active"));
+            tabContents.forEach((c) => c.classList.remove("active"));
+            this.classList.add("active");
+            if (target) target.classList.add("active");
+          });
         });
-    </script>
 
-</body>
+        // --- 5. INITIALIZE DASHBOARD ON PAGE LOAD ---
+        async function initializeDashboard() {
+          const data = await fetchData();
+          if (data) {
+            renderSummaryStats(data.summaryStats);
+            renderProjects(data.projects);
+          }
+        }
+
+        initializeDashboard();
+      });
+    </script>
+    <script src="./js/main.js"></script>
+    <script src="./js/script.js"></script>
+  </body>
 </html>

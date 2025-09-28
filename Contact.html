@@ -1,22 +1,262 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us - CodeNexIn</title>
+
+    <!-- Font Awesome CDN -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <!-- Google Fonts Roboto -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/contact.css" />
-    <link rel="stylesheet" href="./css/index.css" />
+
+    <style>
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+        margin: 0;
+        background-color: #f8f9fb;
+        color: #333;
+        font-size: 16px;
+      }
+
+      /* Hero/CTA Section */
+      .cta-section {
+        background-color: #f1f5ff;
+        text-align: center;
+        padding: 60px 20px;
+      }
+
+      .cta-section button {
+        background: linear-gradient(to right, #1e3a8a, #3b82f6);
+        color: #fff;
+        border: none;
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s ease;
+      }
+
+      .cta-section button:active {
+        transform: translateY(4px);
+      }
+
+      .cta-section h1 {
+        font-size: 40px;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+      }
+
+      .cta-section p {
+        font-size: 18px;
+        color: #4b5563;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 30px;
+        margin: 50px auto;
+        padding: 0;
+        width: 100%;
+        max-width: 1200px;
+        box-sizing: border-box;
+      }
+
+      .form-section {
+        flex: 1;
+        padding: 30px;
+        margin: 0 auto;
+        max-width: 600px;
+        background: #fff;
+        border-radius: 15px;
+        border: 1px solid #e5e7eb;
+      }
+
+      .form-section h2 {
+        margin-bottom: 10px;
+        font-size: 24px;
+        color: #1e3a8a;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      }
+
+      .form-section p {
+        margin-bottom: 25px;
+        color: #666;
+        font-size: 15px;
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 500;
+        font-size: 15px;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 90%;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        background: #f9f9f9;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      /* Align Project Type and Budget side by side */
+      .form-row {
+        display: flex;
+        gap: 15px;
+      }
+      .form-row .form-group {
+        flex: 1;
+      }
+
+      .info-section {
+        flex: 1;
+        padding: 20px;
+        min-width: 350px;
+      }
+
+      .info-section h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+        color: #1e3a8a;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      }
+
+      .info-section p {
+        font-size: 15px;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      .info-card {
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background: #1e3a8a;
+        color: #fff;
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        transition: transform 0.3s ease;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+      }
+
+      .info-card:hover {
+        transform: rotateY(8deg) rotateX(4deg) scale(1.03);
+      }
+
+      .info-card i {
+        font-size: 24px;
+        padding: 10px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        background: linear-gradient(to bottom right, #1e3a8a, #3b82f6);
+        color: #fff;
+      }
+
+      .info-card strong {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .info-card p,
+      .info-card a {
+        font-size: 15px;
+        margin: 0;
+        text-decoration: none;
+        color: #f1f1f1;
+      }
+
+      button {
+        background: linear-gradient(to right, #1e3a8a, #3b82f6);
+        color: white;
+        border: none;
+        padding: 14px 25px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      button:hover {
+        background: linear-gradient(to right, #3b82f6, #1e3a8a);
+        transform: translateY(-2px);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      /* Immediate Help Box */
+      .help-box {
+        text-align: center;
+        margin-top: 40px;
+        padding: 25px;
+        background: #f1f5ff;
+        border-radius: 10px;
+        font-size: 16px;
+        color: #1e3a8a;
+      }
+
+      .help-box a {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 10px 20px;
+        background: #3b82f6;
+        color: #fff;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 15px;
+        transition: transform 0.2s ease;
+      }
+
+      .help-box a:hover {
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+        .form-row {
+          flex-direction: column;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="navbar"></div>
+
     <!-- Hero/CTA Section -->
     <section class="cta-section">
       <button>Get In Touch</button>
@@ -136,20 +376,66 @@
             <p>Saturday: 10:00 AM – 12:00 PM</p>
           </div>
         </div>
-
-        <div class="help-box">
-          <h2>Immediate Help</h2>
-          <p>
-            Need support right away? Our team is here for you
-            <strong>24/7 Emergency Support</strong>.
-          </p>
-          <a href="mailto:support@codenexin.in"
-            ><i class="fas fa-headset"></i> Contact Support</a
-          >
-        </div>
       </div>
     </div>
 
+    <!-- Immediate Help Section -->
+    <div class="help-box">
+      <h2>Immediate Help</h2>
+      <p>
+        Need support right away? Our team is here for you
+        <strong>24/7 Emergency Support</strong>.
+      </p>
+      <a href="mailto:support@codenexin.in"
+        ><i class="fas fa-headset"></i> Contact Support</a
+      >
+    </div>
+
+    <!-- API Integration Script -->
+    <script>
+      document
+        .querySelector("form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault(); // stop page refresh
+
+          // Collect form data
+          const formData = {
+            first_name: e.target.first_name.value,
+            last_name: e.target.last_name.value,
+            email: e.target.email.value,
+            company: e.target.company.value,
+            project_type: e.target.project_type.value,
+            budget: e.target.budget.value,
+            description: e.target.description.value,
+          };
+
+          try {
+            // Send to backend API
+            const response = await fetch(
+              "http://localhost:5000/api/contact/submit",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+              }
+            );
+
+            if (response.ok) {
+              alert("✅ Your message has been submitted successfully!");
+              e.target.reset(); // clear form
+            } else {
+              const errorData = await response.json();
+              alert(
+                "❌ Failed to submit: " + (errorData.message || "Server error")
+              );
+            }
+          } catch (err) {
+            alert("⚠ Network error: " + err.message);
+          }
+        });
+    </script>
     <div id="footer"></div>
     <script src="./js/main.js"></script>
     <script src="./js/script.js"></script>

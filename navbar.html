@@ -1,460 +1,559 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Professional Navbar</title>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Professional Navbar</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 
-<style>
-  /* Reset & body */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: Arial, sans-serif;
-    background: #f9f9f9;
-    padding: 0; /* removed 20px padding to avoid adding page-level white gutters */
-    margin: 0;
-  }
+    <style>
+      /* Reset & body */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background: #f9f9f9;
+        padding: 0; /* removed 20px padding to avoid adding page-level white gutters */
+        margin: 0;
+      }
 
-  /* Navbar */
-  .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 30px;
-    background: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    border-radius: 12px;
-    margin: 20px;
-    position: relative;
-    z-index: 1001;
-    min-height: 80px; /* Fixed height to prevent layout shift */
-  }
-  .logo {
-    width: 60px;
-    border-radius: 8px;
-  }
-  .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-    align-items: center;
-  }
-  .nav-links li {
-    position: relative;
-  }
-  .nav-links a {
-    text-decoration: none;
-    color: #333;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-size: 15px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    border: 1px solid transparent;
-    position: relative;
-  }
+      /* Navbar */
+      .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 30px;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        margin: 20px;
+        position: relative;
+        z-index: 1001;
+        min-height: 80px; /* Fixed height to prevent layout shift */
+      }
+      .logo {
+        width: 60px;
+        border-radius: 8px;
+      }
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+        align-items: center;
+      }
+      .nav-links li {
+        position: relative;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: #333;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        position: relative;
+      }
 
-  /* === MODIFIED CSS START === */
-  /* This new style block makes the hover and active states look the same, like in your video. */
-  .nav-links a:hover,
-  .nav-links a.active {
-    background-color: #007bff;
-    color: #fff;
-  }
-  /* === MODIFIED CSS END === */
+      /* === MODIFIED CSS START === */
+      /* This new style block makes the hover and active states look the same, like in your video. */
+      .nav-links a:hover,
+      .nav-links a.active {
+        background-color: #007bff;
+        color: #fff;
+      }
+      /* === MODIFIED CSS END === */
 
+      /* Dropdown */
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        min-width: 240px;
+        padding: 10px;
+        z-index: 1002;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px 15px;
+        list-style: none;
+      }
+      /* Dropdown menu items */
+      .dropdown-menu a {
+        padding: 8px;
+        color: #333;
+        border-radius: 6px;
+        font-size: 14px;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+      }
 
-  /* Dropdown */
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    min-width: 240px;
-    padding: 10px;
-    z-index: 1002;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px 15px;
-    list-style: none;
-  }
-  /* Dropdown menu items */
-  .dropdown-menu a {
-    padding: 8px;
-    color: #333;
-    border-radius: 6px;
-    font-size: 14px;
-    border: 1px solid transparent;
-    transition: all 0.3s ease;
-  }
+      /* === MODIFIED CSS START FOR DROPDOWN === */
+      /* Applying the same simple style to the dropdown menu links */
+      .dropdown-menu a:hover,
+      .dropdown-menu a.active {
+        background-color: #007bff;
+        color: #fff;
+      }
+      /* === MODIFIED CSS END FOR DROPDOWN === */
 
-  /* === MODIFIED CSS START FOR DROPDOWN === */
-  /* Applying the same simple style to the dropdown menu links */
-  .dropdown-menu a:hover,
-  .dropdown-menu a.active {
-    background-color: #007bff;
-    color: #fff;
-  }
-  /* === MODIFIED CSS END FOR DROPDOWN === */
+      @media (hover: hover) and (pointer: fine) {
+        .dropdown:hover > .dropdown-menu {
+          display: grid;
+        }
+      }
 
-  @media (hover: hover) and (pointer: fine) {
-    .dropdown:hover > .dropdown-menu {
-      display: grid;
-    }
-  }
+      /* Auth buttons */
+      .auth-buttons {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+      .auth-buttons a {
+        padding: 8px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid #007bff;
+        display: inline-block;
+        text-align: center;
+        min-width: 70px;
+      }
+      .auth-buttons .login {
+        color: #007bff;
+        background: transparent;
+      }
+      .auth-buttons .login:hover {
+        background: #007bff;
+        color: #fff;
+      }
+      .auth-buttons .signup {
+        background: #007bff;
+        color: #fff;
+      }
+      .auth-buttons .signup:hover {
+        background: #0056b3;
+        border-color: #0056b3;
+      }
 
-  /* Auth buttons */
-  .auth-buttons {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-  }
-  .auth-buttons a {
-    padding: 8px 16px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 2px solid #007bff;
-    display: inline-block;
-    text-align: center;
-    min-width: 70px;
-  }
-  .auth-buttons .login {
-    color: #007bff;
-    background: transparent;
-  }
-  .auth-buttons .login:hover {
-    background: #007bff;
-    color: #fff;
-  }
-  .auth-buttons .signup {
-    background: #007bff;
-    color: #fff;
-  }
-  .auth-buttons .signup:hover {
-    background: #0056b3;
-    border-color: #0056b3;
-  }
-
-  /* Hamburger */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    width: 25px;
-    height: 20px;
-    justify-content: space-between;
-    cursor: pointer;
-    z-index: 1003;
-  }
-  .hamburger span {
-    height: 3px;
-    background: #333;
-    border-radius: 2px;
-    transition: 0.3s;
-  }
-  .hamburger.open span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-  .hamburger.open span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.open span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
-
-  /* Overlay for mobile */
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
-    display: none;
-    z-index: 1000;
-  }
-  .overlay.show {
-    display: block;
-  }
-
-  /* Mobile View */
-  @media (max-width: 900px) {
-    .nav-links {
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100%;
-      width: 300px;
-      background: #fff;
-      flex-direction: column;
-      padding: 100px 20px 20px;
-      gap: 20px;
-      transform: translateX(100%);
-      transition: transform 0.35s ease-in-out;
-      box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
-      z-index: 1002;
-      overflow-y: auto;
-    }
-    .nav-links.open {
-      transform: translateX(0);
-    }
-    .nav-links li {
-      width: 100%;
-    }
-    .nav-links a {
-      width: 100%;
-      padding: 14px 18px;
-      font-size: 17px;
-      border-radius: 10px;
-      justify-content: flex-start;
-    }
-
-    .dropdown-menu {
-      position: static;
-      box-shadow: none;
-      grid-template-columns: 1fr;
-      display: none;
-      margin-top: 5px;
-      padding-left: 15px;
-      animation: slideDown 0.3s ease forwards;
-    }
-    .dropdown.open > .dropdown-menu {
-      display: block;
-    }
-    @keyframes slideDown {
-      from {
+      /* Hamburger */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        width: 25px;
+        height: 20px;
+        justify-content: space-between;
+        cursor: pointer;
+        z-index: 1003;
+      }
+      .hamburger span {
+        height: 3px;
+        background: #333;
+        border-radius: 2px;
+        transition: 0.3s;
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .hamburger.open span:nth-child(2) {
         opacity: 0;
-        transform: translateY(-5px);
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      .hamburger.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
       }
-    }
 
-    .auth-buttons {
-      flex-direction: column;
-      gap: 12px;
-      padding-top: 10px;
-    }
-    .auth-buttons a {
-      text-align: center;
-      padding: 14px;
-      font-size: 16px;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-    .auth-buttons .login {
-      border: 2px solid #007bff;
-      color: #007bff;
-      background: #fff;
-    }
-    .auth-buttons .login:hover {
-      background: #007bff;
-      color: #fff;
-    }
-    .auth-buttons .signup {
-      background: #007bff;
-      color: #fff;
-      border: 2px solid #007bff;
-      box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
-    }
-    .auth-buttons .signup:hover {
-      background: #0056b3;
-    }
-    .hamburger {
-      display: flex;
-    }
-  }
+      /* Overlay for mobile */
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        display: none;
+        z-index: 1000;
+      }
+      .overlay.show {
+        display: block;
+      }
 
-  /* Demo content */
-  .demo-content {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  }
-  .demo-content h1 {
-    color: #007bff;
-    margin-bottom: 20px;
-  }
-  .demo-content p {
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
-  .page-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 30px 0;
-  }
-  .page-button {
-    padding: 10px 15px;
-    background: #f0f0f0;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  .page-button:hover {
-    background: #e0e0e0;
-  }
-</style>
-</head>
-<body>
-  <header>
-    <nav class="navbar">
-      <a href="home.html" onclick="simulatePage('home')"><img src="assets/Logo.png" alt="Logo" class="logo" /></a>
+      /* Mobile View */
+      @media (max-width: 900px) {
+        .nav-links {
+          position: fixed;
+          top: 0;
+          right: 0;
+          height: 100%;
+          width: 300px;
+          background: #fff;
+          flex-direction: column;
+          padding: 100px 20px 20px;
+          gap: 20px;
+          transform: translateX(100%);
+          transition: transform 0.35s ease-in-out;
+          box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+          z-index: 1002;
+          overflow-y: auto;
+        }
+        .nav-links.open {
+          transform: translateX(0);
+        }
+        .nav-links li {
+          width: 100%;
+        }
+        .nav-links a {
+          width: 100%;
+          padding: 14px 18px;
+          font-size: 17px;
+          border-radius: 10px;
+          justify-content: flex-start;
+        }
 
-      <ul class="nav-links" id="nav-links">
-        <li><a href="home.html" data-page="home" onclick="simulatePage('home')"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="#about"></i> About</a></li>
-        <li><a href="Contact.html" data-page="contact" onclick="simulatePage('contact')"><i class="fas fa-envelope"></i> Contact</a></li>
+        .dropdown-menu {
+          position: static;
+          box-shadow: none;
+          grid-template-columns: 1fr;
+          display: none;
+          margin-top: 5px;
+          padding-left: 15px;
+          animation: slideDown 0.3s ease forwards;
+        }
+        .dropdown.open > .dropdown-menu {
+          display: block;
+        }
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-5px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
-        <li class="dropdown" id="more-dropdown">
-          <a href="#more" id="more-button"><i class="fas fa-bars"></i> More ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="#service" data-page="service" onclick="simulatePage('service')"><i class="fas fa-cogs"></i> Services</a></li>
-            <li><a href="#solutions" data-page="solutions" onclick="simulatePage('solutions')"><i class="fas fa-lightbulb"></i> Solutions</a></li>
-            <li><a href="portfolio.html" data-page="portfolio" onclick="simulatePage('portfolio')"><i class="fas fa-briefcase"></i> Portfolio</a></li>
-            <li><a href="#blog" data-page="blog" onclick="simulatePage('blog')"><i class="fas fa-blog"></i> Blog</a></li>
-            <li><a href="events.html" data-page="events" onclick="simulatePage('events')"><i class="fas fa-calendar-alt"></i> Events</a></li>
-            <li><a href="#research" data-page="research" onclick="simulatePage('research')"><i class="fas fa-flask"></i> Research</a></li>
-            <li><a href="career.html" data-page="career" onclick="simulatePage('career')"><i class="fas fa-user-tie"></i> Careers</a></li>
-            <li><a href="partner.html" data-page="partner" onclick="simulatePage('partner')"><i class="fas fa-handshake"></i> Partner</a></li>
-            <li><a href="customer_dash.html" data-page="customer" onclick="simulatePage('customer')"><i class="fas fa-tachometer-alt"></i> Customer Dashboard</a></li>
-           <li>
-  <a href="client_tracking.html" data-page="client" onclick="simulatePage('client')">
-    <i class="fas fa-chart-line"></i> Client Tracking
-  </a>
-</li>
-          </ul>
-        </li>
+        .auth-buttons {
+          flex-direction: column;
+          gap: 12px;
+          padding-top: 10px;
+        }
+        .auth-buttons a {
+          text-align: center;
+          padding: 14px;
+          font-size: 16px;
+          border-radius: 12px;
+          font-weight: 600;
+          transition: 0.3s;
+        }
+        .auth-buttons .login {
+          border: 2px solid #007bff;
+          color: #007bff;
+          background: #fff;
+        }
+        .auth-buttons .login:hover {
+          background: #007bff;
+          color: #fff;
+        }
+        .auth-buttons .signup {
+          background: #007bff;
+          color: #fff;
+          border: 2px solid #007bff;
+          box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+        .auth-buttons .signup:hover {
+          background: #0056b3;
+        }
+        .hamburger {
+          display: flex;
+        }
+      }
 
-        <div class="auth-buttons">
-          <a href="login.html" class="login" data-page="login" onclick="simulatePage('login')">Login</a>
-          <a href="registration.html" class="signup" data-page="registration" onclick="simulatePage('registration')">Sign Up</a>
+      /* Demo content */
+      .demo-content {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+      .demo-content h1 {
+        color: #007bff;
+        margin-bottom: 20px;
+      }
+      .demo-content p {
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+      .page-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 30px 0;
+      }
+      .page-button {
+        padding: 10px 15px;
+        background: #f0f0f0;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .page-button:hover {
+        background: #e0e0e0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="home.html" onclick="simulatePage('home')"
+          ><img src="assets/Logo.png" alt="Logo" class="logo"
+        /></a>
+
+        <ul class="nav-links" id="nav-links">
+          <li>
+            <a href="home.html" data-page="home" onclick="simulatePage('home')"
+              ><i class="fas fa-home"></i> Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="about.html"
+              data-page="about"
+              onclick="simulatePage('about')"
+              ><i class="fas fa-info-circle"></i> About</a
+            >
+          </li>
+          <li>
+            <a
+              href="contact.html"
+              data-page="contact"
+              onclick="simulatePage('contact')"
+              ><i class="fas fa-envelope"></i> Contact</a
+            >
+          </li>
+
+          <li class="dropdown" id="more-dropdown">
+            <a href="#more" id="more-button"
+              ><i class="fas fa-bars"></i> More ▾</a
+            >
+            <ul class="dropdown-menu">
+              <li>
+                <a
+                  href="service.html"
+                  data-page="service"
+                  onclick="simulatePage('service')"
+                  ><i class="fas fa-cogs"></i> Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="solutions.html"
+                  data-page="solutions"
+                  onclick="simulatePage('solutions')"
+                  ><i class="fas fa-lightbulb"></i> Solutions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="portfolio.html"
+                  data-page="portfolio"
+                  onclick="simulatePage('portfolio')"
+                  ><i class="fas fa-briefcase"></i> Portfolio</a
+                >
+              </li>
+              <li>
+                <a href="#blog" data-page="blog" onclick="simulatePage('blog')"
+                  ><i class="fas fa-blog"></i> Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="events.html"
+                  data-page="events"
+                  onclick="simulatePage('events')"
+                  ><i class="fas fa-calendar-alt"></i> Events</a
+                >
+              </li>
+              <li>
+                <a
+                  href="research.html"
+                  data-page="research"
+                  onclick="simulatePage('research')"
+                  ><i class="fas fa-flask"></i> Research</a
+                >
+              </li>
+              <li>
+                <a
+                  href="career.html"
+                  data-page="career"
+                  onclick="simulatePage('career')"
+                  ><i class="fas fa-user-tie"></i> Careers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="partner.html"
+                  data-page="partner"
+                  onclick="simulatePage('partner')"
+                  ><i class="fas fa-handshake"></i> Partner</a
+                >
+              </li>
+              <li>
+                <a
+                  href="customer_dash.html"
+                  data-page="customer"
+                  onclick="simulatePage('customer')"
+                  ><i class="fas fa-tachometer-alt"></i> Customer Dashboard</a
+                >
+              </li>
+              <li>
+                <a
+                  href="client_tracking.html"
+                  data-page="client"
+                  onclick="simulatePage('client')"
+                >
+                  <i class="fas fa-chart-line"></i> Client Tracking
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <div class="auth-buttons">
+            <a
+              href="login.html"
+              class="login"
+              data-page="login"
+              onclick="simulatePage('login')"
+              >Login</a
+            >
+            <a
+              href="registration.html"
+              class="signup"
+              data-page="registration"
+              onclick="simulatePage('registration')"
+              >Sign Up</a
+            >
+          </div>
+        </ul>
+
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
         </div>
-      </ul>
+      </nav>
+    </header>
 
-      <div class="hamburger" id="hamburger">
-        <span></span><span></span><span></span>
-      </div>
-    </nav>
-  </header>
+    <div class="overlay" id="overlay"></div>
 
-  <div class="overlay" id="overlay"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("nav-links");
+        const overlay = document.getElementById("overlay");
+        const moreDropdown = document.getElementById("more-dropdown");
+        const moreButton = document.getElementById("more-button");
 
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const hamburger = document.getElementById("hamburger");
-    const navLinks = document.getElementById("nav-links");
-    const overlay = document.getElementById("overlay");
-    const moreDropdown = document.getElementById("more-dropdown");
-    const moreButton = document.getElementById("more-button");
+        // Hamburger toggle function
+        function toggleMenu() {
+          const isOpen = navLinks.classList.contains("open");
+          hamburger.classList.toggle("open", !isOpen);
+          navLinks.classList.toggle("open", !isOpen);
+          overlay.classList.toggle("show", !isOpen);
 
-    // Hamburger toggle function
-    function toggleMenu() {
-      const isOpen = navLinks.classList.contains("open");
-      hamburger.classList.toggle("open", !isOpen);
-      navLinks.classList.toggle("open", !isOpen);
-      overlay.classList.toggle("show", !isOpen);
-
-      // Close dropdown when closing menu
-      if (!navLinks.classList.contains("open")) {
-        moreDropdown.classList.remove("open");
-      }
-    }
-
-    // Toggle menu when clicking hamburger
-    hamburger.addEventListener("click", function(e) {
-      e.stopPropagation();
-      toggleMenu();
-    });
-
-    // Close menu when clicking overlay
-    overlay.addEventListener("click", function() {
-      if (navLinks.classList.contains("open")) {
-        toggleMenu();
-      }
-    });
-
-    // Mobile dropdown toggle
-    moreButton.addEventListener("click", function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      if (window.innerWidth <= 900) {
-        moreDropdown.classList.toggle("open");
-      }
-    });
-
-    // Set the active link based on localStorage
-    function setActiveLink(page) {
-      const allNavLinks = document.querySelectorAll(".nav-links a[data-page], .dropdown-menu a[data-page], .auth-buttons a[data-page]");
-
-      allNavLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("data-page") === page) {
-          link.classList.add("active");
+          // Close dropdown when closing menu
+          if (!navLinks.classList.contains("open")) {
+            moreDropdown.classList.remove("open");
+          }
         }
-      });
-    }
 
-    // Function to handle clicks and update state
-    function handleLinkClick(pageName, event) {
-        event.preventDefault(); // Prevent default link behavior
-        localStorage.setItem('activePage', pageName);
-        setActiveLink(pageName);
-
-        // In a real app, you would navigate here, e.g., window.location.href = event.target.href;
-        console.log(`Navigating to ${pageName}`);
-
-        if (window.innerWidth <= 900 && navLinks.classList.contains("open")) {
-            toggleMenu();
-        }
-    }
-
-    // Attach click listeners to all navigation links
-    const allLinks = document.querySelectorAll(".nav-links a[data-page]");
-    allLinks.forEach(link => {
-      const page = link.getAttribute("data-page");
-      if (page) {
-        link.onclick = (event) => handleLinkClick(page, event);
-      }
-    });
-
-    // On page load, check localStorage and set the active link
-    const activePage = localStorage.getItem('activePage') || 'home'; // Default to 'home'
-    setActiveLink(activePage);
-
-    // Close menu on window resize
-    window.addEventListener("resize", function() {
-      if (window.innerWidth > 900) {
-        if (navLinks.classList.contains("open")) {
+        // Toggle menu when clicking hamburger
+        hamburger.addEventListener("click", function (e) {
+          e.stopPropagation();
           toggleMenu();
+        });
+
+        // Close menu when clicking overlay
+        overlay.addEventListener("click", function () {
+          if (navLinks.classList.contains("open")) {
+            toggleMenu();
+          }
+        });
+
+        // Mobile dropdown toggle
+        moreButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (window.innerWidth <= 900) {
+            moreDropdown.classList.toggle("open");
+          }
+        });
+
+        // Set the active link based on localStorage
+        function setActiveLink(page) {
+          const allNavLinks = document.querySelectorAll(
+            ".nav-links a[data-page], .dropdown-menu a[data-page], .auth-buttons a[data-page]"
+          );
+
+          allNavLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("data-page") === page) {
+              link.classList.add("active");
+            }
+          });
         }
-      }
-    });
-  });
-  </script>
-</body>
+
+        // Function to handle clicks and update state
+        function handleLinkClick(pageName, event) {
+          event.preventDefault(); // Prevent default link behavior
+          localStorage.setItem("activePage", pageName);
+          setActiveLink(pageName);
+
+          // In a real app, you would navigate here, e.g., window.location.href = event.target.href;
+          console.log(`Navigating to ${pageName}`);
+
+          if (window.innerWidth <= 900 && navLinks.classList.contains("open")) {
+            toggleMenu();
+          }
+        }
+
+        // Attach click listeners to all navigation links
+        const allLinks = document.querySelectorAll(".nav-links a[data-page]");
+        allLinks.forEach((link) => {
+          const page = link.getAttribute("data-page");
+          if (page) {
+            link.onclick = (event) => handleLinkClick(page, event);
+          }
+        });
+
+        // On page load, check localStorage and set the active link
+        const activePage = localStorage.getItem("activePage") || "home"; // Default to 'home'
+        setActiveLink(activePage);
+
+        // Close menu on window resize
+        window.addEventListener("resize", function () {
+          if (window.innerWidth > 900) {
+            if (navLinks.classList.contains("open")) {
+              toggleMenu();
+            }
+          }
+        });
+      });
+    </script>
+  </body>
 </html>

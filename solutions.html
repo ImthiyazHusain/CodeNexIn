@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <style>
+      :root {
+        --primary-color: #1e90ff;
+        --primary-dark: #1c7ed6;
+        --text-secondary: #64748b;
+        --gray-300: #cbd5e1;
+        --gray-400: #94a3b8;
+        --gray-500: #64748b;
+        --white: #ffffff;
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --border-radius: 8px;
+      }
+
+      body {
+        background-color: rgb(243, 249, 255);
+      }
+
+      .solution {
+        display: flex;
+        /* background-color: black; */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 50px 20px;
+        text-align: center;
+      }
+
+      /* .soln1{
+    background-color: black;
+} */
+      .soln1 span {
+        /* background-color: #6c63ff; */
+        background-color: rgb(97, 94, 154);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        display: inline-block;
+        margin-bottom: 15px;
+      }
+
+      .soln1 h1 {
+        /* font-size: 2.5rem;
+    margin-bottom: 15px; */
+        font-size: 2.8rem;
+        /* font-weight: bold; */
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .soln1 p {
+        font-size: 1.1rem;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #555;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .soln2 {
+        /* background-color: blue; */
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 40px 20px;
+        margin-top: 40px;
+        max-width: 800px;
+        width: 100%;
+      }
+
+      .soln3 h1 {
+        font-size: 2rem;
+        /* margin-bottom: 15px; */
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .soln3 p {
+        font-size: 1.1rem;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #555;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .soln3 button {
+        background-color: rgb(145, 170, 228);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        font-size: 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        .soln1 h1 {
+          font-size: 2rem;
+        }
+
+        .soln1 p {
+          font-size: 1rem;
+        }
+
+        .soln3 h1 {
+          font-size: 1.5rem;
+        }
+
+        .soln3 p {
+          font-size: 0.95rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .soln1 h1 {
+          font-size: 1.5rem;
+        }
+
+        .soln1 p {
+          font-size: 0.9rem;
+        }
+
+        .soln3 h1 {
+          font-size: 1.25rem;
+        }
+
+        .soln3 p {
+          font-size: 0.85rem;
+        }
+
+        .soln3 button {
+          width: 100%;
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <div class="solution">
+      <div class="soln1">
+        <span>Coming Soon</span>
+        <h1>Solutions & Case Studies</h1>
+        <p>
+          Explore our successful project implementations and client success
+          stories. See how we've helped businesses transform through technology.
+        </p>
+      </div>
+      <div class="soln2">
+        <div class="soln3">
+          <h1>We're Working Hard on This Page</h1>
+          <p>
+            This section is currently under development. We're building
+            something amazing here, and it will be available soon. In the
+            meantime, feel free to explore our other services or get in touch
+            with us directly.
+          </p>
+          <br /><br />
+          <button>Contact Us →</button><button>Back to Home</button>
+        </div>
+      </div>
+    </div>
+    <div id="footer"></div>
+    <script src="./js/main.js"></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>

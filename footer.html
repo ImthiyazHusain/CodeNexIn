@@ -1,510 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Enhanced Footer Example</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-/* --- General Setup --- */
-body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    background-color: #f0f2f5;
-    color: #E0E2E8;
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enhanced Footer Example</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* --- General Setup --- */
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        background-color: #f0f2f5;
+      }
 
-/* --- Footer Container --- */
-.site-footer {
-    background-color: #0D1128;
-    padding: 20px 20px 10px;
-    margin-top: 0;
-}
+      /* --- Footer Container --- */
+      .site-footer {
+        background-color: #0d1128;
+        padding: 20px 20px 10px;
+        margin-top: 0;
+      }
 
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
 
-/* --- Footer Top Grid --- */
-.footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 50px;
-}
-
-/* --- Footer Column Titles --- */
-.footer-column h2, .footer-column h3 {
-    color: #FFFFFF;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-/* --- Column Links --- */
-.footer-column ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-column ul li {
-    margin-bottom: 12px;
-}
-
-.footer-column ul li a {
-    color: #A9B2CC;
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s;
-}
-
-.footer-column ul li a:hover {
-    color: #FFFFFF;
-}
-
-/* --- About Column --- */
-.footer-column.about .footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 15px;
-}
-
-.footer-column.about .footer-logo h2 {
-    font-size: 20px;
-    color: #FFFFFF;
-    margin: 0;
-}
-
-.footer-logo img.footer-logo-img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-}
-
-.about-text {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #A9B2CC;
-    margin-bottom: 20px;
-}
-
-/* --- Contact Info --- */
-.contact-info li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: #A9B2CC;
-}
-
-.contact-info li a {
-    color: #A9B2CC;
-}
-
-.contact-info svg {
-    flex-shrink: 0;
-}
-
-/* --- NEW: Improved Newsletter --- */
-.footer-newsletter {
-    background: linear-gradient(135deg, #1A1F3B 0%, #252B4A 100%);
-    border-radius: 12px;
-    padding: 30px;
-    margin: 30px 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.footer-newsletter::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 100%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(74, 80, 115, 0.4) 0%, transparent 70%);
-    z-index: 0;
-}
-
-.footer-newsletter > * {
-    position: relative;
-    z-index: 1;
-}
-
-.footer-newsletter h3 {
-    color: #FFFFFF;
-    font-weight: 700;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.footer-newsletter p {
-    font-size: 16px;
-    color: #A9B2CC;
-    margin-bottom: 25px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.newsletter-form {
-    display: flex;
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.newsletter-form:focus-within {
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
-}
-
-.newsletter-form input {
-    flex: 1;
-    padding: 15px 20px;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: #FFFFFF;
-    font-size: 16px;
-}
-
-.newsletter-form input::placeholder {
-    color: #A9B2CC;
-}
-
-.newsletter-form button {
-    background: linear-gradient(90deg, #4A64E5 0%, #7A4AF7 100%);
-    color: #FFFFFF;
-    border: none;
-    padding: 0 25px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    gap: 8px;
-}
-
-.newsletter-form button:hover {
-    background: linear-gradient(90deg, #5A74F5 0%, #8A5AFF 100%);
-    transform: translateY(-1px);
-}
-
-.newsletter-success {
-    display: none;
-    color: #4ADE80;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-/* --- Divider --- */
-.footer-divider {
-    border: 0;
-    height: 1px;
-    background-color: rgba(169,178,204,0.2);
-    margin: 40px 0;
-}
-
-/* --- Footer Bottom --- */
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    font-size: 14px;
-    color: #A9B2CC;
-    gap: 15px;
-}
-
-.footer-bottom-links {
-    display: flex;
-    gap: 20px;
-}
-
-.footer-bottom-links a {
-    color: #A9B2CC;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer-bottom-links a:hover {
-    color: #FFFFFF;
-}
-
-/* --- Social Icons --- */
-.social-icons {
-    display: flex;
-    gap: 15px;
-}
-
-.social-icons a {
-    color: #A9B2CC;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(169, 178, 204, 0.1);
-}
-
-.social-icons a:hover {
-    color: #FFFFFF;
-    background: rgba(169, 178, 204, 0.2);
-    transform: translateY(-2px);
-}
-
-/* --- NEW: Desktop Menu Improvements --- */
-@media (min-width: 1025px) {
-    .footer-top {
+      /* --- Footer Top Grid --- */
+      .footer-top {
         display: grid;
         grid-template-columns: 2fr 1fr 1fr 1fr;
-        text-align: left;
-    }
-    
-    .footer-column.links ul {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .footer-bottom {
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .footer-bottom-links {
-        order: 2;
-        margin: 15px 0;
-    }
-    
-    .copyright {
-        order: 1;
-    }
-    
-    .social-icons {
-        order: 3;
-    }
-}
+        gap: 40px;
+        margin-bottom: 50px;
+      }
 
-/* --- Responsive --- */
-@media (max-width: 1024px) {
-    .footer-top {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .footer-top {
-        gap: 30px;
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .footer-bottom-links {
-        order: -1;
+      /* --- Footer Column Titles --- */
+      .footer-column h2,
+      .footer-column h3 {
+        color: #ffffff;
+        font-weight: 600;
         margin-bottom: 15px;
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .newsletter-form {
-        flex-direction: column;
-        gap: 10px;
-        background: transparent;
-    }
-    
-    .newsletter-form input {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        text-align: center;
-    }
-    
-    .newsletter-form button {
-        width: 100%;
-        border-radius: 8px;
-        padding: 15px;
-    }
-}
+      }
 
-@media (max-width: 480px) {
-    .footer-column h3, .footer-column h2 {
-        font-size: 16px;
-    }
-    
-    .footer-newsletter {
-        padding: 20px;
-    }
-    
-    .footer-newsletter h3 {
+      /* --- Column Links --- */
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 12px;
+      }
+
+      .footer-column ul li a {
+        color: #a9b2cc;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s;
+      }
+
+      .footer-column ul li a:hover {
+        color: #ffffff;
+      }
+
+      /* --- About Column --- */
+      .footer-column.about .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 15px;
+      }
+
+      .footer-column.about .footer-logo h2 {
         font-size: 20px;
-    }
-    
-    .social-icons {
+        color: #ffffff;
+        margin: 0;
+      }
+
+      .footer-logo img.footer-logo-img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+      }
+
+      .about-text {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #a9b2cc;
+        margin-bottom: 20px;
+      }
+
+      /* --- Contact Info --- */
+      .contact-info li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: #a9b2cc;
+      }
+
+      .contact-info li a {
+        color: #a9b2cc;
+      }
+
+      .contact-info svg {
+        flex-shrink: 0;
+      }
+
+      /* --- NEW: Improved Newsletter --- */
+      .footer-newsletter {
+        background: linear-gradient(135deg, #1a1f3b 0%, #252b4a 100%);
+        border-radius: 12px;
+        padding: 30px;
+        margin: 30px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer-newsletter::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(74, 80, 115, 0.4) 0%,
+          transparent 70%
+        );
+        z-index: 0;
+      }
+
+      .footer-newsletter > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-newsletter h3 {
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .footer-newsletter p {
+        font-size: 16px;
+        color: #a9b2cc;
+        margin-bottom: 25px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .newsletter-form {
+        display: flex;
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .newsletter-form:focus-within {
+        border-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+      }
+
+      .newsletter-form input {
+        flex: 1;
+        padding: 15px 20px;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: #ffffff;
+        font-size: 16px;
+      }
+
+      .newsletter-form input::placeholder {
+        color: #a9b2cc;
+      }
+
+      .newsletter-form button {
+        background: linear-gradient(90deg, #4a64e5 0%, #7a4af7 100%);
+        color: #ffffff;
+        border: none;
+        padding: 0 25px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
         justify-content: center;
-    }
-}
-</style>
-</head>
+        transition: all 0.3s ease;
+        font-weight: 600;
+        gap: 8px;
+      }
 
-<body>
-<footer class="site-footer">
-    <div class="footer-container">
+      .newsletter-form button:hover {
+        background: linear-gradient(90deg, #5a74f5 0%, #8a5aff 100%);
+        transform: translateY(-1px);
+      }
+
+      .newsletter-success {
+        display: none;
+        color: #4ade80;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+
+      /* --- Divider --- */
+      .footer-divider {
+        border: 0;
+        height: 1px;
+        background-color: rgba(169, 178, 204, 0.2);
+        margin: 40px 0;
+      }
+
+      /* --- Footer Bottom --- */
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        font-size: 14px;
+        color: #a9b2cc;
+        gap: 15px;
+      }
+
+      .footer-bottom-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .footer-bottom-links a {
+        color: #a9b2cc;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-bottom-links a:hover {
+        color: #ffffff;
+      }
+
+      /* --- Social Icons --- */
+      .social-icons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icons a {
+        color: #a9b2cc;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(169, 178, 204, 0.1);
+      }
+
+      .social-icons a:hover {
+        color: #ffffff;
+        background: rgba(169, 178, 204, 0.2);
+        transform: translateY(-2px);
+      }
+
+      /* --- NEW: Desktop Menu Improvements --- */
+      @media (min-width: 1025px) {
+        .footer-top {
+          display: grid;
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+          text-align: left;
+        }
+
+        .footer-column.links ul {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .footer-bottom {
+          justify-content: center;
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-bottom-links {
+          order: 2;
+          margin: 15px 0;
+        }
+
+        .copyright {
+          order: 1;
+        }
+
+        .social-icons {
+          order: 3;
+        }
+      }
+
+      /* --- Responsive --- */
+      @media (max-width: 1024px) {
+        .footer-top {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .footer-top {
+          gap: 30px;
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-bottom-links {
+          order: -1;
+          margin-bottom: 15px;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .newsletter-form {
+          flex-direction: column;
+          gap: 10px;
+          background: transparent;
+        }
+
+        .newsletter-form input {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 8px;
+          text-align: center;
+        }
+
+        .newsletter-form button {
+          width: 100%;
+          border-radius: 8px;
+          padding: 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .footer-column h3,
+        .footer-column h2 {
+          font-size: 16px;
+        }
+
+        .footer-newsletter {
+          padding: 20px;
+        }
+
+        .footer-newsletter h3 {
+          font-size: 20px;
+        }
+
+        .social-icons {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <footer class="site-footer">
+      <div class="footer-container">
         <div class="footer-top">
-            <!-- About Column -->
-            <div class="footer-column about">
-                <div class="footer-logo">
-                    <img src="assets/footer_logo.jpg" alt="CodeNexIn Logo" class="footer-logo-img">
-                    <h2>CodeNexIn</h2>
-                </div>
-                <p class="about-text">
-                    Transforming businesses through innovative technology solutions. We're your trusted partner in digital transformation and growth.
-                </p>
-                <ul class="contact-info">
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.558Z"/>
-                        </svg>
-                        <a href="mailto:hello@codenexin.com">hello@codenexin.com</a>
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.28 1.465l-2.13 2.13a11.942 11.942 0 0 0 5.58 5.58l2.13-2.13a1.5 1.5 0 0 1 1.465.28l2.292 2.292c.391.391.391 1.023 0 1.414l-2.121 2.121a1.745 1.745 0 0 1-2.61.163L4.93 14.48a12.42 12.42 0 0 1-6.104-6.104L.22 5.093a1.745 1.745 0 0 1 .163-2.61l2.121-2.121a1.414 1.414 0 0 1 1.414 0l-2.121 2.121Z"/>
-                        </svg>
-                        <span>+1 (555) 123-4567</span>
-                    </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                        </svg>
-                        <span>San Francisco, CA</span>
-                    </li>
-                </ul>
+          <!-- About Column -->
+          <div class="footer-column about">
+            <div class="footer-logo">
+              <img
+                src="assets/footer_logo.jpg"
+                alt="CodeNexIn Logo"
+                class="footer-logo-img"
+              />
+              <h2>CodeNexIn</h2>
             </div>
+            <p class="about-text">
+              Transforming businesses through innovative technology solutions.
+              We're your trusted partner in digital transformation and growth.
+            </p>
+            <ul class="contact-info">
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.558Z"
+                  />
+                </svg>
+                <a href="mailto:hello@codenexin.com">hello@codenexin.com</a>
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.28 1.465l-2.13 2.13a11.942 11.942 0 0 0 5.58 5.58l2.13-2.13a1.5 1.5 0 0 1 1.465.28l2.292 2.292c.391.391.391 1.023 0 1.414l-2.121 2.121a1.745 1.745 0 0 1-2.61.163L4.93 14.48a12.42 12.42 0 0 1-6.104-6.104L.22 5.093a1.745 1.745 0 0 1 .163-2.61l2.121-2.121a1.414 1.414 0 0 1 1.414 0l-2.121 2.121Z"
+                  />
+                </svg>
+                <span>+1 (555) 123-4567</span>
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+                  />
+                </svg>
+                <span>San Francisco, CA</span>
+              </li>
+            </ul>
+          </div>
 
-            <!-- Quick Links Column -->
-            <div class="footer-column links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Portfolio</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
+          <!-- Quick Links Column -->
+          <div class="footer-column links">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Portfolio</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
 
-            <!-- Services Column -->
-            <div class="footer-column links">
-                <h3>Services</h3>
-                <ul>
-                    <li><a href="#">Software Development</a></li>
-                    <li><a href="#">AI & Machine Learning</a></li>
-                    <li><a href="#">Cloud Solutions</a></li>
-                    <li><a href="#">Digital Transformation</a></li>
-                    <li><a href="#">Cybersecurity</a></li>
-                </ul>
-            </div>
+          <!-- Services Column -->
+          <div class="footer-column links">
+            <h3>Services</h3>
+            <ul>
+              <li><a href="#">Software Development</a></li>
+              <li><a href="#">AI & Machine Learning</a></li>
+              <li><a href="#">Cloud Solutions</a></li>
+              <li><a href="#">Digital Transformation</a></li>
+              <li><a href="#">Cybersecurity</a></li>
+            </ul>
+          </div>
 
-            <!-- Resources Column -->
-            <div class="footer-column links">
-                <h3>Resources</h3>
-                <ul>
-                    <li><a href="#">Case Studies</a></li>
-                    <li><a href="#">Research & Insights</a></li>
-                    <li><a href="#">Events & Hackathons</a></li>
-                    <li><a href="#">Partner With Us</a></li>
-                    <li><a href="#">Legal</a></li>
-                </ul>
-            </div>
+          <!-- Resources Column -->
+          <div class="footer-column links">
+            <h3>Resources</h3>
+            <ul>
+              <li><a href="#">Case Studies</a></li>
+              <li><a href="#">Research & Insights</a></li>
+              <li><a href="#">Events & Hackathons</a></li>
+              <li><a href="#">Partner With Us</a></li>
+              <li><a href="#">Legal</a></li>
+            </ul>
+          </div>
         </div>
 
         <!-- Improved Newsletter -->
         <div class="footer-newsletter">
-            <h3>Stay Updated with Our Latest Insights</h3>
-            <p>Join our community of tech innovators. Get exclusive access to industry trends, expert analysis, and company updates delivered to your inbox.</p>
-            <form class="newsletter-form" id="newsletterForm">
-                <input type="email" placeholder="Enter your email address" required>
-                <button type="submit">
-                    Subscribe
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </button>
-            </form>
-            <div class="newsletter-success" id="newsletterSuccess">
-                Thank you for subscribing! Check your email for confirmation.
-            </div>
+          <h3>Stay Updated with Our Latest Insights</h3>
+          <p>
+            Join our community of tech innovators. Get exclusive access to
+            industry trends, expert analysis, and company updates delivered to
+            your inbox.
+          </p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              required
+            />
+            <button type="submit">
+              Subscribe
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+                />
+              </svg>
+            </button>
+          </form>
+          <div class="newsletter-success" id="newsletterSuccess">
+            Thank you for subscribing! Check your email for confirmation.
+          </div>
         </div>
 
-        <hr class="footer-divider">
+        <hr class="footer-divider" />
 
         <!-- Footer Bottom -->
         <div class="footer-bottom">
-            <p class="copyright">&copy; 2025 CodeNexIn. All rights reserved.</p>
-            <div class="footer-bottom-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Cookie Policy</a>
-            </div>
-            <div class="social-icons">
-                <a href="#" aria-label="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.325 0-1.845.723-2.165 1.258h.016V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                    </svg>
-                </a>
-                <a href="#" aria-label="Twitter">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
-                    </svg>
-                </a>
-                <a href="#" aria-label="Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0 0 3.603 0 8.049c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326h-1.864v5.625C13.074 15.396 16 12.065 16 8.049z"/>
-                    </svg>
-                </a>
-            </div>
+          <p class="copyright">&copy; 2025 CodeNexIn. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+          </div>
+          <div class="social-icons">
+            <a href="#" aria-label="LinkedIn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.325 0-1.845.723-2.165 1.258h.016V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"
+                />
+              </svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
+                />
+              </svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0 0 3.603 0 8.049c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326h-1.864v5.625C13.074 15.396 16 12.065 16 8.049z"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
-    </div>
-</footer>
+      </div>
+    </footer>
 
-<script>
-// Simple newsletter form handling
-document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // In a real implementation, you would send this data to a server
-    const successMessage = document.getElementById('newsletterSuccess');
-    successMessage.style.display = 'block';
-    
-    // Reset form
-    this.reset();
-    
-    // Hide success message after 5 seconds
-    setTimeout(() => {
-        successMessage.style.display = 'none';
-    }, 5000);
-});
-</script>
-</body>
+    <script>
+      // Simple newsletter form handling
+      document
+        .getElementById("newsletterForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // In a real implementation, you would send this data to a server
+          const successMessage = document.getElementById("newsletterSuccess");
+          successMessage.style.display = "block";
+
+          // Reset form
+          this.reset();
+
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            successMessage.style.display = "none";
+          }, 5000);
+        });
+    </script>
+  </body>
 </html>
