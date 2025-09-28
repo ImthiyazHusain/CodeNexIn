@@ -59,7 +59,7 @@
         chat.innerHTML += `<p><b>You:</b> ${msg}</p>`;
 
         const res = await fetch(
-          "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBFnIDXfBMaLpUUs2c8GsLQlc_fdE6y2sQ",
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyChEdHTvKGSI0fVowW9zwf0nhA6-mEEGes",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -77,6 +77,7 @@
         );
 
         const data = await res.json();
+        console.log(data);
         const reply = data.candidates[0].content.parts[0].text;
         chat.innerHTML += `<p><b>Bot:</b> ${reply}</p>`;
 
